@@ -42,7 +42,9 @@
 </template>
 
 <script>
+import fs from "fs";
 import CSV from "csvtojson";
+const { dialog } = require("electron").remote;
 
 export default {
   data() {
@@ -98,6 +100,7 @@ export default {
     writeFile(data) {
       fs.writeFile("HOLYSHIT.txt", data);
       console.log("FILE DATA JUST WRITTEN!");
+      console.log(dialog);
     }
   }
 };
