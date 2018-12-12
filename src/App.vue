@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <TheInput></TheInput>
-    <hr>
-    <TheFooter></TheFooter>
+    <TheFooter class="footer"></TheFooter>
   </div>
 </template>
 
@@ -18,3 +17,21 @@ export default {
   computed: {}
 };
 </script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  padding: 2rem;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+</style>
