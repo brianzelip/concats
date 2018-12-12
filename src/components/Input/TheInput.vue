@@ -93,6 +93,11 @@ export default {
           return acc;
         }, [])
         .join("\n");
+      this.writeFile(this.csvOutput);
+    },
+    writeFile(data) {
+      fs.writeFile("HOLYSHIT.txt", data);
+      console.log("FILE DATA JUST WRITTEN!");
     }
   }
 };
