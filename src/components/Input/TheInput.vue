@@ -1,7 +1,10 @@
 <template>
   <section>
-    <div>
-      <label for="fileInput">Select csv file:</label>
+    <div style="margin-bottom: 2rem;">
+      <label
+        for="fileInput"
+        style="display: block; margin-bottom: .5rem"
+      >Select csv file:</label>
       <input
         @change="ingestCsv"
         accept=".csv"
@@ -10,10 +13,14 @@
         type="file"
       >
     </div>
-    <div v-if="csvInputHeaders.length > 0">
+    <div
+      style="margin-bottom: 2rem;"
+      v-if="csvInputHeaders.length > 0"
+    >
       <p>Select fields to be concatenated in order:</p>
       <div
         :key="index"
+        style="padding-bottom: .25rem;"
         v-for="(header, index) in csvInputHeaders"
       >
         <input
@@ -26,7 +33,10 @@
         <label :for="`headers-${index}`">{{ header }}</label>
       </div>
     </div>
-    <div v-if="userSelectedHeaders.length > 0">
+    <div
+      style="margin-bottom: 2rem;"
+      v-if="userSelectedHeaders.length > 0"
+    >
       <p>Your field selection is:</p>
       <ol>
         <li
@@ -36,8 +46,9 @@
       </ol>
     </div>
     <button
-      :disabled="userSelectedHeaders.length < 1"
+      :disabled="submitted"
       @click="setCsvOutput"
+      v-if="userSelectedHeaders.length > 0"
     >Submit</button>
     <button
       @click="resetApp"
@@ -63,7 +74,8 @@ export default {
       csvInputHeaders: [],
       userSelectedHeaders: [],
       csvAsJson: [],
-      csvOutput: ""
+      csvOutput: "",
+      submitted: false
     };
   },
   methods: {
@@ -105,6 +117,7 @@ export default {
           return acc;
         }, [])
         .join("\n");
+      this.submitted = !this.submitted;
       this.saveFile(this.csvOutput);
     },
     saveFile(data) {
