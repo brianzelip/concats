@@ -129,7 +129,7 @@ export default {
         },
         fileName => {
           if (fileName === undefined) return;
-          fs.writeFile(fileName, this.csvOutput);
+          fs.writeFile(fileName, data);
         }
       );
     },
