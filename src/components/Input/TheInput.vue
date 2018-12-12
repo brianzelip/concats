@@ -3,7 +3,7 @@
     <div style="margin-bottom: 2rem;">
       <label
         for="fileInput"
-        style="display: block; margin-bottom: .5rem"
+        style="display: block; margin-bottom: .5rem; font-weight: bold"
       >Select csv file:</label>
       <input
         @change="ingestCsv"
@@ -17,7 +17,7 @@
       style="margin-bottom: 2rem;"
       v-if="csvInputHeaders.length > 0"
     >
-      <p>Select fields to be concatenated in order:</p>
+      <p style="margin-bottom: 1rem; font-weight: bold">Select fields to be concatenated in order:</p>
       <div
         :key="index"
         style="padding-bottom: .25rem;"
@@ -37,7 +37,7 @@
       style="margin-bottom: 2rem;"
       v-if="userSelectedHeaders.length > 0"
     >
-      <p>Your field selection is:</p>
+      <p style="font-weight: bold;">Your field selection is:</p>
       <ol>
         <li
           :key="index"
@@ -58,7 +58,7 @@
     </div>
     <div v-if="csvOutput.length > 0 ">
       <hr>
-      <p>Preview of output:</p>
+      <p style="font-weight: bold;">Preview of output:</p>
       <pre>{{ csvOutput }}</pre>
     </div>
   </section>
