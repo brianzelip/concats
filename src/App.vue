@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h1>concats</h1>
+    <p>output a single-column csv file of rows of concatenated fields from an input csv file</p>
     <TheInput></TheInput>
     <TheFooter class="footer"></TheFooter>
   </div>
@@ -24,7 +26,7 @@ export default {
 }
 .container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: column;
   padding: 2rem;
 }
@@ -33,5 +35,12 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   justify-content: flex-end;
+}
+h1,
+p {
+  margin: 0;
+}
+p {
+  margin-bottom: 2rem;
 }
 </style>
