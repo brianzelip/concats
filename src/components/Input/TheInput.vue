@@ -1,15 +1,17 @@
 <template>
   <section>
-    <label for="fileInput">Select csv file:</label>
-    <input
-      @change="ingestCsv"
-      accept=".csv"
-      id="fileInput"
-      name="fileInput"
-      type="file"
-    >
+    <div>
+      <label for="fileInput">Select csv file:</label>
+      <input
+        @change="ingestCsv"
+        accept=".csv"
+        id="fileInput"
+        name="fileInput"
+        type="file"
+      >
+    </div>
     <div v-if="csvInputHeaders.length > 0">
-      <p>Select the headers to concat in order:</p>
+      <p>Select fields to be concatenated in order:</p>
       <div
         :key="index"
         v-for="(header, index) in csvInputHeaders"
@@ -25,7 +27,7 @@
       </div>
     </div>
     <div v-if="userSelectedHeaders.length > 0">
-      <p>user selected headers are:</p>
+      <p>Your field selection is:</p>
       <ol>
         <li
           :key="index"
@@ -37,14 +39,22 @@
       :disabled="userSelectedHeaders.length < 1"
       @click="setCsvOutput"
     >Submit</button>
-    <pre>{{ csvOutput }}</pre>
+    <button
+      @click="resetApp"
+      v-if="csvOutput.length > 0"
+    >RESET DATA</button>
+    <div v-if="csvOutput.length > 0 ">
+      <hr>
+      <p>Preview of output:</p>
+      <pre>{{ csvOutput }}</pre>
+    </div>
   </section>
 </template>
 
 <script>
-import fs from "fs";
-import CSV from "csvtojson";
+const fs = require("fs");
 const { dialog } = require("electron").remote;
+import CSV from "csvtojson";
 
 export default {
   data() {
@@ -95,12 +105,25 @@ export default {
           return acc;
         }, [])
         .join("\n");
-      this.writeFile(this.csvOutput);
+      this.saveFile(this.csvOutput);
     },
-    writeFile(data) {
-      fs.writeFile("HOLYSHIT.txt", data);
-      console.log("FILE DATA JUST WRITTEN!");
-      console.log(dialog);
+    saveFile(data) {
+      dialog.showSaveDialog(
+        {
+          filters: [{ name: "csv", extensions: ["csv"] }]
+        },
+        fileName => {
+          if (fileName === undefined) return;
+          fs.writeFile(fileName, this.csvOutput);
+        }
+      );
+    },
+    resetApp() {
+      this.csvInput = "";
+      this.csvInputHeaders = [];
+      this.userSelectedHeaders = [];
+      this.csvAsJson = [];
+      this.csvOutput = "";
     }
   }
 };
