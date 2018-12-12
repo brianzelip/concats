@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="margin-bottom: 2rem;">
     <div style="margin-bottom: 2rem;">
       <label
         for="fileInput"
@@ -45,15 +45,17 @@
         >{{ header }}</li>
       </ol>
     </div>
-    <button
-      :disabled="submitted"
-      @click="setCsvOutput"
-      v-if="userSelectedHeaders.length > 0"
-    >Submit</button>
-    <button
-      @click="resetApp"
-      v-if="csvOutput.length > 0"
-    >RESET DATA</button>
+    <div style="margin-bottom: 2rem;">
+      <button
+        :disabled="submitted"
+        @click="setCsvOutput"
+        v-if="userSelectedHeaders.length > 0"
+      >Submit</button>
+      <button
+        @click="resetApp"
+        v-if="csvOutput.length > 0"
+      >RESET DATA</button>
+    </div>
     <div v-if="csvOutput.length > 0 ">
       <hr>
       <p>Preview of output:</p>
