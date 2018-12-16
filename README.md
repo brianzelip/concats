@@ -1,29 +1,11 @@
-# concats-desktop
+# concats
 
-## Project setup
-```
-npm install
-```
+Desktop app for outputting a single-column csv file of rows of concatenated fields from an input csv file.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Made with:
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [electron](https://github.com/electron/electron)
+- [vue](https://github.com/vuejs/vue)
+- [electron-vue](https://github.com/SimulatedGREG/electron-vue)
+- [vue-cli3](https://github.com/vuejs/vue-cli)
+- [electron-builder](https://www.electron.build/)
