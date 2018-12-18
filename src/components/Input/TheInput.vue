@@ -4,9 +4,9 @@
       <label
         for="fileInput"
         style="display: block; margin-bottom: .5rem; font-weight: bold"
-      >Select csv file:</label>
+      >Select file:</label>
       <input
-        @change="ingestCsv"
+        @change="ingestData"
         accept=".csv, .tsv"
         id="fileInput"
         name="fileInput"
@@ -81,7 +81,7 @@ export default {
     };
   },
   methods: {
-    ingestCsv(e) {
+    ingestData(e) {
       const vm = this;
       const file = e.target.files[0];
       const reader = new FileReader();
