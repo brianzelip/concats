@@ -7,7 +7,7 @@
       >Select csv file:</label>
       <input
         @change="ingestCsv"
-        accept=".csv"
+        accept=".csv, .tsv"
         id="fileInput"
         name="fileInput"
         type="file"
@@ -89,7 +89,7 @@ export default {
       reader.readAsText(file);
       reader.onload = function(event) {
         vm.csvInput = event.target.result;
-        CSV()
+        CSV({ delimiter: ["\t", ","] })
           .fromString(vm.csvInput)
           .on("header", header => {
             vm.setCsvInputHeaders(header);
