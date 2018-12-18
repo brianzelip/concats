@@ -90,9 +90,19 @@ export default {
     };
   },
   methods: {
-    ingestData(e) {
+    dragover(e) {
+      e.preventDefault();
+    },
+    drop(e) {
+      e.preventDefault();
+      this.getInputFile(e);
+    },
+    getInputFile(e) {
+      const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+      this.handleInputFile(file);
+    },
+    handleInputFile(file) {
       const vm = this;
-      const file = e.target.files[0];
       const reader = new FileReader();
 
       reader.readAsText(file);
