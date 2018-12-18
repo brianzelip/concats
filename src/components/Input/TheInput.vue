@@ -1,17 +1,26 @@
 <template>
   <section style="margin-bottom: 2rem;">
     <div style="margin-bottom: 2rem;">
-      <label
-        for="fileInput"
-        style="display: block; margin-bottom: .5rem; font-weight: bold"
-      >Select file:</label>
-      <input
-        @change="ingestData"
-        accept=".csv, .tsv"
-        id="fileInput"
-        name="fileInput"
-        type="file"
+      <div
+        @dragover="dragover"
+        @drop="drop"
+        class="dropzone"
       >
+        <label
+          for="fileInput"
+          style="margin-right: 1rem; font-weight: bold"
+        >Select file:</label>
+        <input
+          @change="getInputFile"
+          accept=".csv, .tsv"
+          id="fileInput"
+          name="fileInput"
+          text="Browse"
+          type="file"
+        >
+        <p style="margin: .5rem 0; font-style: italic">or</p>
+        <p style="margin: 0; font-weight: bold">Drag and drop file here</p>
+      </div>
     </div>
     <div
       style="margin-bottom: 2rem;"
@@ -81,9 +90,19 @@ export default {
     };
   },
   methods: {
-    ingestData(e) {
+    dragover(e) {
+      e.preventDefault();
+    },
+    drop(e) {
+      e.preventDefault();
+      this.getInputFile(e);
+    },
+    getInputFile(e) {
+      const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+      this.handleInputFile(file);
+    },
+    handleInputFile(file) {
       const vm = this;
-      const file = e.target.files[0];
       const reader = new FileReader();
 
       reader.readAsText(file);
@@ -139,7 +158,16 @@ export default {
       this.userSelectedHeaders = [];
       this.csvAsJson = [];
       this.csvOutput = "";
+      this.submitted = false;
     }
   }
 };
 </script>
+
+<style>
+.dropzone {
+  padding: 1rem;
+  border-style: dashed;
+  /* text-align: center; */
+}
+</style>
