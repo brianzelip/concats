@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>concats</h1>
-    <p>output a single-column csv file of rows of concatenated fields from an input csv file</p>
+    <p>output a single-column csv file of rows of concatenated fields from an input tsv/csv file</p>
     <TheInput></TheInput>
     <TheFooter class="footer"></TheFooter>
   </div>
