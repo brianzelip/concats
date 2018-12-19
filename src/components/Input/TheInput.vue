@@ -1,6 +1,9 @@
 <template>
   <section style="margin-bottom: 2rem;">
-    <div style="margin-bottom: 2rem;">
+    <div
+      id="fileSelector"
+      style="margin-bottom: 2rem;"
+    >
       <div
         @dragover="dragover"
         @drop="drop"
@@ -23,6 +26,7 @@
       </div>
     </div>
     <div
+      id="headerSelector"
       style="margin-bottom: 2rem;"
       v-if="csvInputHeaders.length > 0"
     >
@@ -43,6 +47,7 @@
       </div>
     </div>
     <div
+      id="output"
       style="margin-bottom: 2rem;"
       v-if="userSelectedHeaders.length > 0"
     >
@@ -54,7 +59,10 @@
         >{{ header }}</li>
       </ol>
     </div>
-    <div style="margin-bottom: 2rem;">
+    <div
+      id="reset"
+      style="margin-bottom: 2rem;"
+    >
       <button
         :disabled="submitted"
         @click="setCsvOutput"
