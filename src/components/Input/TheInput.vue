@@ -86,6 +86,11 @@ const fs = require("fs");
 const { dialog } = require("electron").remote;
 import CSV from "csvtojson";
 
+import TheFileSelector from "./TheFileSelector.vue";
+import TheHeadersSelector from "./TheHeadersSelector.vue";
+import InputButton from "./InputButton.vue";
+import TheOutput from "../Output/TheOutput.vue";
+
 export default {
   data() {
     return {
@@ -97,14 +102,13 @@ export default {
       submitted: false
     };
   },
+  components: {
+    TheFileSelector,
+    TheHeadersSelector,
+    InputButton,
+    TheOutput
+  },
   methods: {
-    dragover(e) {
-      e.preventDefault();
-    },
-    drop(e) {
-      e.preventDefault();
-      this.getInputFile(e);
-    },
     getInputFile(e) {
       const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
       this.handleInputFile(file);
