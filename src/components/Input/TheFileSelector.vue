@@ -24,7 +24,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    dragover(e) {
+      e.preventDefault();
+    },
+    drop(e) {
+      e.preventDefault();
+      console.log("hello from DDDRRRRROOOPPPPPP");
+      this.getInputFile(e);
+    },
+    getInputFile() {}
+  }
+};
 </script>
 
 <style>
