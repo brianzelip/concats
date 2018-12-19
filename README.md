@@ -15,3 +15,13 @@ Made with:
 2. Select headers
 3. Output
 4. Reset
+
+## Components
+
+- Input
+  - FileSelector
+  - HeadersSelector
+  - Submit
+  - Reset
+- Output
+  - Output
