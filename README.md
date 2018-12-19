@@ -8,3 +8,10 @@ Made with:
 - [vue](https://github.com/vuejs/vue)
 - [electron-vue](https://github.com/SimulatedGREG/electron-vue)
 - [electron-builder](https://www.electron.build/)
+
+## User workflow:
+
+1. Select file
+2. Select headers
+3. Output
+4. Reset
