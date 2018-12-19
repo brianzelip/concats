@@ -1,8 +1,8 @@
 <template>
   <div style="margin-bottom: 2rem;">
     <div
-      @dragover="dragover"
-      @drop="drop"
+      @dragover.prevent
+      @drop.prevent="drop"
       class="dropzone"
     >
       <label
@@ -26,12 +26,7 @@
 <script>
 export default {
   methods: {
-    dragover(e) {
-      e.preventDefault();
-    },
     drop(e) {
-      e.preventDefault();
-      console.log("hello from DDDRRRRROOOPPPPPP");
       this.getInputFile(e);
     },
     getInputFile() {}
