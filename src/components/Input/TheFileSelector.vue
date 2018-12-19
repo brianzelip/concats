@@ -2,7 +2,7 @@
   <div style="margin-bottom: 2rem;">
     <div
       @dragover.prevent
-      @drop.prevent="drop"
+      @drop.prevent="$emit('file-input', $event)"
       class="dropzone"
     >
       <label
@@ -10,7 +10,7 @@
         style="margin-right: 1rem; font-weight: bold"
       >Select file:</label>
       <input
-        @change="getInputFile"
+        @change="$emit('file-input', $event)"
         accept=".csv, .tsv"
         id="fileInput"
         name="fileInput"
@@ -22,17 +22,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  methods: {
-    drop(e) {
-      this.getInputFile(e);
-    },
-    getInputFile() {}
-  }
-};
-</script>
 
 <style>
 .dropzone {
