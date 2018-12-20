@@ -49,7 +49,6 @@ export default {
   components: {
     TheFileSelector,
     TheHeadersSelector,
-    InputButton,
     TheOutput
   },
   methods: {
