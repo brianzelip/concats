@@ -19,14 +19,10 @@
         v-if="csvOutput.length > 0"
       >RESET DATA</button>
     </div>
-    <div
-      id="output"
-      v-if="csvOutput.length > 0 "
-    >
-      <hr>
-      <p style="font-weight: bold;">Preview of output:</p>
-      <pre>{{ csvOutput }}</pre>
-    </div>
+    <TheOutput
+      :output="csvOutput"
+      v-if="csvOutput.length > 0"
+    ></TheOutput>
   </section>
 </template>
 
