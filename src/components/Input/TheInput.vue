@@ -6,7 +6,7 @@
       v-if="csvInputHeaders.length > 0"
     ></TheHeadersSelector>
     <div
-      id="reset"
+      id="controls"
       style="margin-bottom: 2rem;"
     >
       <button
@@ -33,7 +33,6 @@ import CSV from "csvtojson";
 
 import TheFileSelector from "./TheFileSelector.vue";
 import TheHeadersSelector from "./TheHeadersSelector.vue";
-import InputButton from "./InputButton.vue";
 import TheOutput from "../Output/TheOutput.vue";
 
 export default {
