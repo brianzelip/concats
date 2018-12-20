@@ -37,11 +37,12 @@
 
 <script>
 export default {
+  props: ["headers"],
   data() {
     return {
       userSelectedHeaders: []
     };
   },
-  props: ["headers"]
+  methods: {}
 };
 </script>
