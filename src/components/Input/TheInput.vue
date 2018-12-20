@@ -1,40 +1,10 @@
 <template>
   <section style="margin-bottom: 2rem;">
     <TheFileSelector v-on:file-input="getInputFile"></TheFileSelector>
-    <div
-      id="headerSelector"
-      style="margin-bottom: 2rem;"
+    <TheHeadersSelector
+      :headers="csvInputHeaders"
       v-if="csvInputHeaders.length > 0"
-    >
-      <p style="margin-bottom: 1rem; font-weight: bold">Select fields to be concatenated in order:</p>
-      <div
-        :key="index"
-        style="padding-bottom: .25rem;"
-        v-for="(header, index) in csvInputHeaders"
-      >
-        <input
-          :id="`headers-${index}`"
-          :value="header"
-          name="headers"
-          type="checkbox"
-          v-model="userSelectedHeaders"
-        >
-        <label :for="`headers-${index}`">{{ header }}</label>
-      </div>
-    </div>
-    <div
-      id="output"
-      style="margin-bottom: 2rem;"
-      v-if="userSelectedHeaders.length > 0"
-    >
-      <p style="font-weight: bold;">Your field selection is:</p>
-      <ol>
-        <li
-          :key="index"
-          v-for="(header, index) in userSelectedHeaders"
-        >{{ header }}</li>
-      </ol>
-    </div>
+    ></TheHeadersSelector>
     <div
       id="reset"
       style="margin-bottom: 2rem;"
@@ -49,7 +19,10 @@
         v-if="csvOutput.length > 0"
       >RESET DATA</button>
     </div>
-    <div v-if="csvOutput.length > 0 ">
+    <div
+      id="output"
+      v-if="csvOutput.length > 0 "
+    >
       <hr>
       <p style="font-weight: bold;">Preview of output:</p>
       <pre>{{ csvOutput }}</pre>
