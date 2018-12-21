@@ -135,6 +135,5 @@ form {
 .dropzone {
   padding: 1rem;
   border-style: dashed;
-  /* text-align: center; */
 }
 </style>
