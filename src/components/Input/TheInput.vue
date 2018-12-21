@@ -1,5 +1,5 @@
 <template>
-  <section style="margin-bottom: 2rem;">
+  <form name="concatsForm">
     <TheFileSelector v-on:file-input="getInputFile"></TheFileSelector>
 
     <TheHeadersSelector
@@ -25,7 +25,7 @@
       :output="csvOutput"
       v-if="csvOutput.length > 0"
     ></TheOutput>
-  </section>
+  </form>
 </template>
 
 <script>
@@ -128,7 +128,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+form {
+  margin-bottom: 2rem;
+}
 .dropzone {
   padding: 1rem;
   border-style: dashed;
