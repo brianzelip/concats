@@ -4,6 +4,7 @@
     <TheHeadersSelector
       :headers="csvInputHeaders"
       v-if="csvInputHeaders.length > 0"
+      v-on:user-selected-headers-change="updateUserSelectedHeaders"
     ></TheHeadersSelector>
     <div
       id="controls"
@@ -78,6 +79,9 @@ export default {
     },
     setCsvAsJson(data) {
       this.csvAsJson = data;
+    },
+    updateUserSelectedHeaders(data) {
+      this.userSelectedHeaders = data;
     },
     setCsvOutput() {
       this.csvOutput = this.csvAsJson
