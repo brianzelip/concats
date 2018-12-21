@@ -5,10 +5,7 @@
       @drop.prevent="$emit('file-input', $event)"
       class="dropzone"
     >
-      <label
-        for="fileInput"
-        style="margin-right: 1rem; font-weight: bold"
-      >Select file:</label>
+      <label for="fileInput">Select file:</label>
       <input
         @change="$emit('file-input', $event)"
         accept=".csv, .tsv"
@@ -26,6 +23,10 @@
 <style scoped>
 section {
   margin-bottom: 2rem;
+}
+label {
+  margin-right: 1rem;
+  font-weight: bold;
 }
 .dropzone {
   padding: 1rem;
