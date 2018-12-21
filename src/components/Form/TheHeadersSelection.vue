@@ -1,6 +1,6 @@
 <template>
   <section style="margin-bottom: 2rem;">
-    <p style="font-weight: bold;">Your field selection is:</p>
+    <p>Your field selection is:</p>
     <ol>
       <li
         :key="index"
@@ -16,3 +16,9 @@ export default {
 };
 </script>
 
+<style scoped>
+p {
+  margin: 0 0 1rem 0;
+  font-weight: bold;
+}
+</style>

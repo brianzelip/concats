@@ -3,7 +3,7 @@
     id="headerSelector"
     style="margin-bottom: 2rem;"
   >
-    <p style="margin-bottom: 1rem; font-weight: bold">Select fields to be concatenated in order:</p>
+    <p>Select fields to be concatenated in order:</p>
     <div
       :key="index"
       style="padding-bottom: .25rem;"
@@ -36,3 +36,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+p {
+  margin: 0 0 1rem 0;
+  font-weight: bold;
+}
+</style>

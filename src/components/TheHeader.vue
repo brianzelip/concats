@@ -6,11 +6,12 @@
 </template>
 
 <style scoped>
-h1 {
+header {
+  margin-bottom: 2rem;
+}
+h1,
+p {
   margin: 0;
   line-height: 1;
-}
-p {
-  margin: 0 0 2rem 0;
 }
 </style>
