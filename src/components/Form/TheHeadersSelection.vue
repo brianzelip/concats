@@ -1,5 +1,5 @@
 <template>
-  <section style="margin-bottom: 2rem;">
+  <section id="headersSelection">
     <p>Your field selection is:</p>
     <ol>
       <li
@@ -17,6 +17,9 @@ export default {
 </script>
 
 <style scoped>
+section {
+  margin-bottom: 2rem;
+}
 p {
   margin: 0 0 1rem 0;
   font-weight: bold;

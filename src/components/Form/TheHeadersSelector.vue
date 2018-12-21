@@ -1,8 +1,5 @@
 <template>
-  <section
-    id="headerSelector"
-    style="margin-bottom: 2rem;"
-  >
+  <section id="headersSelector">
     <p>Select fields to be concatenated in order:</p>
     <div
       :key="index"
@@ -38,6 +35,9 @@ export default {
 </script>
 
 <style scoped>
+section {
+  margin-bottom: 2rem;
+}
 p {
   margin: 0 0 1rem 0;
   font-weight: bold;
