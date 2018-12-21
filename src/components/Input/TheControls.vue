@@ -1,17 +1,15 @@
 <template>
-  <div
-    id="controls"
-    style="margin-bottom: 2rem;"
-  >
-    <button
+  <section id="controls">
+    <input
       :disabled="submitted"
-      @click="$emit('input-submitted')"
-    >Submit</button>
+      @click.prevent="$emit('input-submitted')"
+      type="submit"
+    >
     <button
       @click="$emit('reset-app')"
       v-if="csvOutput.length > 0"
     >RESET DATA</button>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -20,3 +18,8 @@ export default {
 };
 </script>
 
+<style scoped>
+section {
+  margin-bottom: 2rem;
+}
+</style>
