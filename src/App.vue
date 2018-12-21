@@ -3,19 +3,19 @@
     <h1>concats</h1>
     <p>output a single-column csv file of rows of concatenated fields from an input tsv/csv file</p>
 
-    <TheInput></TheInput>
+    <TheForm></TheForm>
 
     <TheFooter class="footer"></TheFooter>
   </main>
 </template>
 
 <script>
-import TheInput from "./components/Input/TheInput.vue";
+import TheForm from "./components/Input/TheForm.vue";
 import TheFooter from "./components/global/TheFooter.vue";
 
 export default {
   components: {
-    TheInput,
+    TheForm,
     TheFooter
   }
 };
