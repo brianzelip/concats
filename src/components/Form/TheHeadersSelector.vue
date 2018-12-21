@@ -3,7 +3,6 @@
     <p>Select fields to be concatenated in order:</p>
     <div
       :key="index"
-      style="padding-bottom: .25rem;"
       v-for="(header, index) in headers"
     >
       <input
@@ -41,5 +40,8 @@ section {
 p {
   margin: 0 0 1rem 0;
   font-weight: bold;
+}
+div {
+  padding-bottom: 0.25rem;
 }
 </style>
