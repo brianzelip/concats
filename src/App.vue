@@ -1,6 +1,6 @@
 <template>
   <main class="container">
-    <h1>concats</h1>
+    <h1 class="lh1">concats</h1>
     <p>output a single-column csv file of rows of concatenated fields from an input tsv/csv file</p>
 
     <TheForm></TheForm>
@@ -36,6 +36,9 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   justify-content: flex-end;
+}
+.lh1 {
+  line-height: 1;
 }
 h1,
 p {
