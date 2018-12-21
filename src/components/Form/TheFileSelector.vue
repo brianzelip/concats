@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 2rem;">
+  <section id="fileSelector">
     <div
       @dragover.prevent
       @drop.prevent="$emit('file-input', $event)"
@@ -17,15 +17,26 @@
         text="Browse"
         type="file"
       >
-      <p style="margin: .5rem 0; font-style: italic">or</p>
-      <p style="margin: 0; font-weight: bold">Drag and drop file here</p>
+      <p class="or">or</p>
+      <p class="drag">Drag and drop file here</p>
     </div>
-  </div>
+  </section>
 </template>
 
-<style>
+<style scoped>
+section {
+  margin-bottom: 2rem;
+}
 .dropzone {
   padding: 1rem;
   border-style: dashed;
+}
+.or {
+  margin: 0.5rem 0;
+  font-style: italic;
+}
+.drag {
+  margin: 0;
+  font-weight: bold;
 }
 </style>
