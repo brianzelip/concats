@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TheForm from "./components/Input/TheForm.vue";
+import TheForm from "./components/Form/TheForm.vue";
 import TheFooter from "./components/global/TheFooter.vue";
 
 export default {
