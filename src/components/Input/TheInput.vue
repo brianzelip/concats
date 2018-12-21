@@ -8,6 +8,11 @@
       v-on:user-selected-headers-change="updateUserSelectedHeaders"
     ></TheHeadersSelector>
 
+    <TheHeadersSelection
+      :headers="userSelectedHeaders"
+      v-if="userSelectedHeaders.length > 0"
+    ></TheHeadersSelection>
+
     <TheControls
       :csvOutput="csvOutput"
       :submitted="submitted"
@@ -30,6 +35,7 @@ import CSV from "csvtojson";
 
 import TheFileSelector from "./TheFileSelector.vue";
 import TheHeadersSelector from "./TheHeadersSelector.vue";
+import TheHeadersSelection from "./TheHeadersSelection.vue";
 import TheControls from "./TheControls.vue";
 import TheOutput from "../Output/TheOutput.vue";
 
@@ -47,6 +53,7 @@ export default {
   components: {
     TheFileSelector,
     TheHeadersSelector,
+    TheHeadersSelection,
     TheControls,
     TheOutput
   },
