@@ -1,9 +1,9 @@
 <template>
-  <div id="output">
+  <section id="output">
     <hr>
-    <p style="font-weight: bold;">Preview of output:</p>
+    <p>Preview of output:</p>
     <pre>{{ output }}</pre>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -11,3 +11,15 @@ export default {
   props: ["output"]
 };
 </script>
+
+<style scoped>
+section {
+  margin-bottom: 2rem;
+}
+p {
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  padding-top: 1rem;
+}
+</style>
+
