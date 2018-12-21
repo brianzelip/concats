@@ -3,11 +3,11 @@
     <div>
       <hr>by
       <a
-        @click="openExternal"
+        @click.prevent="openExternal"
         href="http://zelip.me"
       >bzelip</a> |
       <a
-        @click="openExternal"
+        @click.prevent="openExternal"
         href="https://github.com/brianzelip/concats"
       >app source</a>
       | v{{ version }}
@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     openExternal(e) {
-      e.preventDefault();
       shell.openExternal(e.target.href);
     }
   }
