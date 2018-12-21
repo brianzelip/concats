@@ -1,82 +1,43 @@
 <template>
-  <section style="margin-bottom: 2rem;">
-    <div style="margin-bottom: 2rem;">
-      <div
-        @dragover="dragover"
-        @drop="drop"
-        class="dropzone"
-      >
-        <label
-          for="fileInput"
-          style="margin-right: 1rem; font-weight: bold"
-        >Select file:</label>
-        <input
-          @change="getInputFile"
-          accept=".csv, .tsv"
-          id="fileInput"
-          name="fileInput"
-          text="Browse"
-          type="file"
-        >
-        <p style="margin: .5rem 0; font-style: italic">or</p>
-        <p style="margin: 0; font-weight: bold">Drag and drop file here</p>
-      </div>
-    </div>
-    <div
-      style="margin-bottom: 2rem;"
+  <form name="concatsForm">
+    <TheFileSelector v-on:file-input="getInputFile"></TheFileSelector>
+
+    <TheHeadersSelector
+      :headers="csvInputHeaders"
       v-if="csvInputHeaders.length > 0"
-    >
-      <p style="margin-bottom: 1rem; font-weight: bold">Select fields to be concatenated in order:</p>
-      <div
-        :key="index"
-        style="padding-bottom: .25rem;"
-        v-for="(header, index) in csvInputHeaders"
-      >
-        <input
-          :id="`headers-${index}`"
-          :value="header"
-          name="headers"
-          type="checkbox"
-          v-model="userSelectedHeaders"
-        >
-        <label :for="`headers-${index}`">{{ header }}</label>
-      </div>
-    </div>
-    <div
-      style="margin-bottom: 2rem;"
+      v-on:user-selected-headers-change="updateUserSelectedHeaders"
+    ></TheHeadersSelector>
+
+    <TheHeadersSelection
+      :headers="userSelectedHeaders"
       v-if="userSelectedHeaders.length > 0"
-    >
-      <p style="font-weight: bold;">Your field selection is:</p>
-      <ol>
-        <li
-          :key="index"
-          v-for="(header, index) in userSelectedHeaders"
-        >{{ header }}</li>
-      </ol>
-    </div>
-    <div style="margin-bottom: 2rem;">
-      <button
-        :disabled="submitted"
-        @click="setCsvOutput"
-        v-if="userSelectedHeaders.length > 0"
-      >Submit</button>
-      <button
-        @click="resetApp"
-        v-if="csvOutput.length > 0"
-      >RESET DATA</button>
-    </div>
-    <div v-if="csvOutput.length > 0 ">
-      <hr>
-      <p style="font-weight: bold;">Preview of output:</p>
-      <pre>{{ csvOutput }}</pre>
-    </div>
-  </section>
+    ></TheHeadersSelection>
+
+    <TheControls
+      :csvOutput="csvOutput"
+      :submitted="submitted"
+      v-if="userSelectedHeaders.length > 0"
+      v-on:input-submitted="setCsvOutput"
+      v-on:reset-app="resetApp"
+    ></TheControls>
+
+    <TheOutput
+      :output="csvOutput"
+      v-if="csvOutput.length > 0"
+    ></TheOutput>
+  </form>
 </template>
 
 <script>
 const fs = require("fs");
 const { dialog } = require("electron").remote;
 import CSV from "csvtojson";
+
+import TheFileSelector from "./TheFileSelector.vue";
+import TheHeadersSelector from "./TheHeadersSelector.vue";
+import TheHeadersSelection from "./TheHeadersSelection.vue";
+import TheControls from "./TheControls.vue";
+import TheOutput from "./TheOutput.vue";
 
 export default {
   data() {
@@ -89,14 +50,14 @@ export default {
       submitted: false
     };
   },
+  components: {
+    TheFileSelector,
+    TheHeadersSelector,
+    TheHeadersSelection,
+    TheControls,
+    TheOutput
+  },
   methods: {
-    dragover(e) {
-      e.preventDefault();
-    },
-    drop(e) {
-      e.preventDefault();
-      this.getInputFile(e);
-    },
     getInputFile(e) {
       const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
       this.handleInputFile(file);
@@ -123,6 +84,9 @@ export default {
     },
     setCsvAsJson(data) {
       this.csvAsJson = data;
+    },
+    updateUserSelectedHeaders(data) {
+      this.userSelectedHeaders = data;
     },
     setCsvOutput() {
       this.csvOutput = this.csvAsJson
@@ -164,10 +128,8 @@ export default {
 };
 </script>
 
-<style>
-.dropzone {
-  padding: 1rem;
-  border-style: dashed;
-  /* text-align: center; */
+<style scoped>
+form {
+  margin-bottom: 2rem;
 }
 </style>

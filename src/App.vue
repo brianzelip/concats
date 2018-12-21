@@ -1,22 +1,24 @@
 <template>
-  <div class="container">
-    <h1>concats</h1>
-    <p>output a single-column csv file of rows of concatenated fields from an input tsv/csv file</p>
-    <TheInput></TheInput>
+  <main class="container">
+    <TheHeader></TheHeader>
+
+    <TheForm></TheForm>
+
     <TheFooter class="footer"></TheFooter>
-  </div>
+  </main>
 </template>
 
 <script>
-import TheInput from "./components/Input/TheInput.vue";
-import TheFooter from "./components/global/TheFooter.vue";
+import TheHeader from "./components/TheHeader.vue";
+import TheForm from "./components/Form/TheForm.vue";
+import TheFooter from "./components/TheFooter.vue";
 
 export default {
   components: {
-    TheInput,
+    TheHeader,
+    TheForm,
     TheFooter
-  },
-  computed: {}
+  }
 };
 </script>
 
@@ -35,12 +37,5 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   justify-content: flex-end;
-}
-h1,
-p {
-  margin: 0;
-}
-p {
-  margin-bottom: 2rem;
 }
 </style>
