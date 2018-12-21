@@ -8,6 +8,7 @@
     ></TheHeadersSelector>
     <TheControls
       :csvOutput="csvOutput"
+      :submitted="submitted"
       v-if="userSelectedHeaders.length > 0"
       v-on:input-submitted="setCsvOutput"
       v-on:reset-app="resetApp"
