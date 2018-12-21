@@ -5,21 +5,17 @@
 
     <TheInput></TheInput>
 
-    <TheOutput></TheOutput>
-
     <TheFooter class="footer"></TheFooter>
   </main>
 </template>
 
 <script>
 import TheInput from "./components/Input/TheInput.vue";
-import TheOutput from "./components/Output/TheOutput.vue";
 import TheFooter from "./components/global/TheFooter.vue";
 
 export default {
   components: {
     TheInput,
-    TheOutput,
     TheFooter
   }
 };
