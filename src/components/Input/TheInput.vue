@@ -6,7 +6,13 @@
       v-if="csvInputHeaders.length > 0"
       v-on:user-selected-headers-change="updateUserSelectedHeaders"
     ></TheHeadersSelector>
-    <div
+    <TheControls
+      :csvOutput="csvOutput"
+      v-if="userSelectedHeaders.length > 0"
+      v-on:input-submitted="setCsvOutput"
+      v-on:reset-app="resetApp"
+    ></TheControls>
+    <!-- <div
       id="controls"
       style="margin-bottom: 2rem;"
     >
@@ -19,7 +25,7 @@
         @click="resetApp"
         v-if="csvOutput.length > 0"
       >RESET DATA</button>
-    </div>
+    </div>-->
     <TheOutput
       :output="csvOutput"
       v-if="csvOutput.length > 0"
@@ -34,6 +40,7 @@ import CSV from "csvtojson";
 
 import TheFileSelector from "./TheFileSelector.vue";
 import TheHeadersSelector from "./TheHeadersSelector.vue";
+import TheControls from "./TheControls.vue";
 import TheOutput from "../Output/TheOutput.vue";
 
 export default {
@@ -50,6 +57,7 @@ export default {
   components: {
     TheFileSelector,
     TheHeadersSelector,
+    TheControls,
     TheOutput
   },
   methods: {
