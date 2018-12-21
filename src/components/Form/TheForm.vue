@@ -132,8 +132,4 @@ export default {
 form {
   margin-bottom: 2rem;
 }
-.dropzone {
-  padding: 1rem;
-  border-style: dashed;
-}
 </style>
