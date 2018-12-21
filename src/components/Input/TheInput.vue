@@ -1,11 +1,13 @@
 <template>
   <section style="margin-bottom: 2rem;">
     <TheFileSelector v-on:file-input="getInputFile"></TheFileSelector>
+
     <TheHeadersSelector
       :headers="csvInputHeaders"
       v-if="csvInputHeaders.length > 0"
       v-on:user-selected-headers-change="updateUserSelectedHeaders"
     ></TheHeadersSelector>
+
     <TheControls
       :csvOutput="csvOutput"
       :submitted="submitted"
@@ -13,20 +15,7 @@
       v-on:input-submitted="setCsvOutput"
       v-on:reset-app="resetApp"
     ></TheControls>
-    <!-- <div
-      id="controls"
-      style="margin-bottom: 2rem;"
-    >
-      <button
-        :disabled="submitted"
-        @click="setCsvOutput"
-        v-if="userSelectedHeaders.length > 0"
-      >Submit</button>
-      <button
-        @click="resetApp"
-        v-if="csvOutput.length > 0"
-      >RESET DATA</button>
-    </div>-->
+
     <TheOutput
       :output="csvOutput"
       v-if="csvOutput.length > 0"
