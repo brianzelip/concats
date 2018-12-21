@@ -37,7 +37,7 @@ import TheFileSelector from "./TheFileSelector.vue";
 import TheHeadersSelector from "./TheHeadersSelector.vue";
 import TheHeadersSelection from "./TheHeadersSelection.vue";
 import TheControls from "./TheControls.vue";
-import TheOutput from "../Output/TheOutput.vue";
+import TheOutput from "./TheOutput.vue";
 
 export default {
   data() {
