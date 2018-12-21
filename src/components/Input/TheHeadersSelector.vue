@@ -13,7 +13,7 @@
         <input
           :id="`headers-${index}`"
           :value="header"
-          name="headers"
+          name="userSelectedHeaders"
           type="checkbox"
           v-model="userSelectedHeaders"
         >
@@ -43,6 +43,10 @@ export default {
       userSelectedHeaders: []
     };
   },
-  methods: {}
+  watch: {
+    userSelectedHeaders() {
+      this.$emit("user-selected-headers-change", this.userSelectedHeaders);
+    }
+  }
 };
 </script>
