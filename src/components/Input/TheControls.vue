@@ -6,7 +6,7 @@
       type="submit"
     >
     <button
-      @click="$emit('reset-app')"
+      @click.prevent="$emit('reset-app')"
       v-if="csvOutput.length > 0"
     >RESET DATA</button>
   </section>
