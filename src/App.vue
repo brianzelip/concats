@@ -1,7 +1,6 @@
 <template>
   <main class="container">
-    <h1 class="lh1">concats</h1>
-    <p>output a single-column csv file of rows of concatenated fields from an input tsv/csv file</p>
+    <TheHeader></TheHeader>
 
     <TheForm></TheForm>
 
@@ -10,11 +9,13 @@
 </template>
 
 <script>
+import TheHeader from "./components/TheHeader.vue";
 import TheForm from "./components/Form/TheForm.vue";
-import TheFooter from "./components/global/TheFooter.vue";
+import TheFooter from "./components/TheFooter.vue";
 
 export default {
   components: {
+    TheHeader,
     TheForm,
     TheFooter
   }
@@ -36,15 +37,5 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   justify-content: flex-end;
-}
-.lh1 {
-  line-height: 1;
-}
-h1,
-p {
-  margin: 0;
-}
-p {
-  margin-bottom: 2rem;
 }
 </style>
