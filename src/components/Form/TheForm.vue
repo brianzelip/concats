@@ -47,7 +47,12 @@ export default {
       userSelectedHeaders: [],
       csvAsJson: [],
       csvOutput: "",
-      submitted: false
+      submitted: false,
+      steps: {
+        one: false,
+        two: false,
+        three: false
+      }
     };
   },
   components: {
@@ -123,6 +128,9 @@ export default {
       this.csvAsJson = [];
       this.csvOutput = "";
       this.submitted = false;
+      Object.keys(this.steps).forEach(step => {
+        this.steps[step] = false;
+      });
     }
   }
 };
