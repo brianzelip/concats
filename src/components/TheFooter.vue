@@ -32,3 +32,12 @@ export default {
   }
 };
 </script>
+
+<style>
+footer {
+  color: #aaa;
+}
+a {
+  color: #111;
+}
+</style>

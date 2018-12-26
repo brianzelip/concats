@@ -13,5 +13,6 @@ h1,
 p {
   margin: 0;
   line-height: 1;
+  color: #aaa;
 }
 </style>
