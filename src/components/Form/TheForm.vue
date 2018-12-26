@@ -7,7 +7,7 @@
 
     <TheHeadersContainer
       :headers="csvInputHeaders"
-      v-if="csvInputHeaders.length > 0"
+      v-if="fileHasBeenProcessed && !headersHaveBeenSubmitted"
       v-on:user-selected-headers-change="updateUserSelectedHeaders"
     ></TheHeadersContainer>
 
@@ -51,7 +51,9 @@ export default {
     fileHasBeenProcessed() {
       return this.csvAsJson.length > 0;
     },
-    stepTwoIsComplete() {}
+    headersHaveBeenSubmitted() {
+      return this.csvInputHeaders.length > 0 && this.csvOutput.length > 0;
+    }
   },
   components: {
     TheFileSelector,
