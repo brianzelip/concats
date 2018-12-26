@@ -5,16 +5,11 @@
       v-on:file-input="getInputFile"
     ></TheFileSelector>
 
-    <TheHeadersSelector
+    <TheHeadersContainer
       :headers="csvInputHeaders"
       v-if="csvInputHeaders.length > 0"
       v-on:user-selected-headers-change="updateUserSelectedHeaders"
-    ></TheHeadersSelector>
-
-    <TheHeadersSelection
-      :headers="userSelectedHeaders"
-      v-if="userSelectedHeaders.length > 0"
-    ></TheHeadersSelection>
+    ></TheHeadersContainer>
 
     <TheControls
       :csvOutput="csvOutput"
@@ -37,8 +32,7 @@ const { dialog } = require("electron").remote;
 import CSV from "csvtojson";
 
 import TheFileSelector from "./TheFileSelector.vue";
-import TheHeadersSelector from "./TheHeadersSelector.vue";
-import TheHeadersSelection from "./TheHeadersSelection.vue";
+import TheHeadersContainer from "./TheHeadersContainer.vue";
 import TheControls from "./TheControls.vue";
 import TheOutput from "./TheOutput.vue";
 
@@ -61,8 +55,7 @@ export default {
   },
   components: {
     TheFileSelector,
-    TheHeadersSelector,
-    TheHeadersSelection,
+    TheHeadersContainer,
     TheControls,
     TheOutput
   },
