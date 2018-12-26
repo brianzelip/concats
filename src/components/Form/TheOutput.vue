@@ -1,6 +1,5 @@
 <template>
   <section id="output">
-    <hr>
     <p>Preview of output:</p>
     <pre>{{ output }}</pre>
   </section>
