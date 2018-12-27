@@ -14,7 +14,7 @@
     <TheControls
       :csvOutput="csvOutput"
       :submitted="submitted"
-      v-if="userSelectedHeaders.length > 0"
+      v-if="fileHasBeenProcessed"
       v-on:input-submitted="setCsvOutput"
       v-on:reset-app="resetApp"
     ></TheControls>
