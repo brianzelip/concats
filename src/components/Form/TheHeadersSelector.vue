@@ -5,6 +5,10 @@
       :key="index"
       v-for="(header, index) in headers"
     >
+      <span
+        class="index"
+        v-html="getSelectedIndex(header)"
+      ></span>
       <input
         :id="`headers-${index}`"
         :value="header"
@@ -25,6 +29,13 @@ export default {
       userSelectedHeaders: []
     };
   },
+  methods: {
+    getSelectedIndex(header) {
+      return this.userSelectedHeaders.indexOf(header) > -1
+        ? this.userSelectedHeaders.indexOf(header) + 1
+        : "&nbsp;";
+    }
+  },
   watch: {
     userSelectedHeaders() {
       this.$emit("user-selected-headers-change", this.userSelectedHeaders);
@@ -43,5 +54,11 @@ p {
 }
 div {
   padding-bottom: 0.25rem;
+}
+.index {
+  display: inline-block;
+  width: 15px;
+  font-size: 0.875rem;
+  text-align: center;
 }
 </style>
