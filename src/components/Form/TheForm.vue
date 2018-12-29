@@ -1,15 +1,25 @@
 <template>
   <form name="concatsForm">
-    <TheFileSelector
-      v-if="!fileHasBeenProcessed"
-      v-on:file-input="getInputFile"
-    ></TheFileSelector>
+    <transition
+      mode="out-in"
+      name="fade"
+    >
+      <TheFileSelector
+        v-if="!fileHasBeenProcessed"
+        v-on:file-input="getInputFile"
+      ></TheFileSelector>
+    </transition>
 
-    <TheHeadersSelector
-      :headers="csvInputHeaders"
-      v-if="fileHasBeenProcessed && !headersHaveBeenSubmitted"
-      v-on:user-selected-headers-change="updateUserSelectedHeaders"
-    ></TheHeadersSelector>
+    <transition
+      mode="out-in"
+      name="fade"
+    >
+      <TheHeadersSelector
+        :headers="csvInputHeaders"
+        v-if="fileHasBeenProcessed && !headersHaveBeenSubmitted"
+        v-on:user-selected-headers-change="updateUserSelectedHeaders"
+      ></TheHeadersSelector>
+    </transition>
 
     <TheControls
       :csvOutput="csvOutput"
@@ -135,5 +145,13 @@ export default {
 <style scoped>
 form {
   margin-bottom: 2rem;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
