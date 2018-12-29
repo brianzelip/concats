@@ -4,21 +4,13 @@
       mode="out-in"
       name="fade"
     >
-      <TheFileSelector
-        v-if="!fileHasBeenProcessed"
+      <component
+        :is="currentSelector"
+        v-bind="currentSelectorProps"
+        v-if="!submitted"
         v-on:file-input="getInputFile"
-      ></TheFileSelector>
-    </transition>
-
-    <transition
-      mode="out-in"
-      name="fade"
-    >
-      <TheHeadersSelector
-        :headers="csvInputHeaders"
-        v-if="fileHasBeenProcessed && !headersHaveBeenSubmitted"
         v-on:user-selected-headers-change="updateUserSelectedHeaders"
-      ></TheHeadersSelector>
+      ></component>
     </transition>
 
     <TheControls
@@ -54,7 +46,8 @@ export default {
       userSelectedHeaders: [],
       csvAsJson: [],
       csvOutput: "",
-      submitted: false
+      submitted: false,
+      currentSelector: "TheFileSelector"
     };
   },
   computed: {
@@ -63,6 +56,11 @@ export default {
     },
     headersHaveBeenSubmitted() {
       return this.csvInputHeaders.length > 0 && this.csvOutput.length > 0;
+    },
+    currentSelectorProps() {
+      return this.currentSelector === "TheFileSelector"
+        ? {}
+        : { headers: this.csvInputHeaders };
     }
   },
   components: {
@@ -90,6 +88,9 @@ export default {
           })
           .then(json => {
             vm.setCsvAsJson(json);
+          })
+          .then(() => {
+            vm.currentSelector = "TheHeadersSelector";
           });
       };
     },
@@ -137,6 +138,7 @@ export default {
       this.csvAsJson = [];
       this.csvOutput = "";
       this.submitted = false;
+      this.currentSelector = "TheFileSelector";
     }
   }
 };
