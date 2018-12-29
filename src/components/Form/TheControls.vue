@@ -1,9 +1,10 @@
 <template>
   <section id="controls">
     <input
-      :disabled="submitted"
       @click.prevent="$emit('input-submitted')"
+      class="btn btn-outline"
       type="submit"
+      v-if="!submitted"
     >
     <button
       @click.prevent="$emit('reset-app')"
@@ -25,8 +26,8 @@ section {
 .btn {
   font-family: inherit;
   font-size: inherit;
-  font-weight: 700;
-  cursor: pointer;
+  font-weight: 400;
+  cursor: default;
   display: inline-block;
   line-height: 1.125rem;
   padding: 0.5rem 1rem;
@@ -84,5 +85,9 @@ section {
 .btn-outline.is-disabled,
 .btn-outline:disabled {
   opacity: 0.5;
+}
+.btn-outline.is-disabled:hover,
+.btn-outline:disabled:hover {
+  box-shadow: none;
 }
 </style>
