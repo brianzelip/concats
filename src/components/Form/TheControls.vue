@@ -30,7 +30,7 @@ section {
   cursor: default;
   display: inline-block;
   line-height: 1.125rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   margin: 0;
   height: auto;
   border: 1px solid transparent;
