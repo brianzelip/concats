@@ -7,24 +7,12 @@
       <component
         :is="currentSelector"
         v-bind="currentSelectorProps"
-        v-if="!submitted"
         v-on:file-input="getInputFile"
+        v-on:reset-app="resetApp"
         v-on:user-selected-headers-change="updateUserSelectedHeaders"
+        v-on:user-selected-headers-submitted="setCsvOutput"
       ></component>
     </transition>
-
-    <TheControls
-      :csvOutput="csvOutput"
-      :submitted="submitted"
-      v-if="fileHasBeenProcessed"
-      v-on:input-submitted="setCsvOutput"
-      v-on:reset-app="resetApp"
-    ></TheControls>
-
-    <TheOutput
-      :output="csvOutput"
-      v-if="csvOutput.length > 0"
-    ></TheOutput>
   </form>
 </template>
 
@@ -35,7 +23,6 @@ import CSV from "csvtojson";
 
 import TheFileSelector from "./TheFileSelector.vue";
 import TheHeadersSelector from "./TheHeadersSelector.vue";
-import TheControls from "./TheControls.vue";
 import TheOutput from "./TheOutput.vue";
 
 export default {
@@ -60,13 +47,14 @@ export default {
     currentSelectorProps() {
       return this.currentSelector === "TheFileSelector"
         ? {}
-        : { headers: this.csvInputHeaders };
+        : this.currentSelector === "TheHeadersSelector"
+        ? { headers: this.csvInputHeaders }
+        : { csvOutput: this.csvOutput };
     }
   },
   components: {
     TheFileSelector,
     TheHeadersSelector,
-    TheControls,
     TheOutput
   },
   methods: {
@@ -117,7 +105,7 @@ export default {
           return acc;
         }, [])
         .join("\n");
-      this.submitted = !this.submitted;
+      this.currentSelector = "TheOutput";
       this.saveFile(this.csvOutput);
     },
     saveFile(data) {
