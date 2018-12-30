@@ -24,7 +24,7 @@
 
     <transition name="fade">
       <input
-        @click.prevent="$emit('selected-headers-submitted')"
+        @click.prevent="$emit('user-selected-headers-submitted')"
         class="btn btn-outline"
         type="submit"
         v-if="haveSelectedHeaders"
