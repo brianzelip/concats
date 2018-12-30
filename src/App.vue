@@ -1,6 +1,7 @@
 <template>
   <main class="container">
-    <TheHeader></TheHeader>
+    <!-- <TheHeader></TheHeader> -->
+    <TheProgressBar></TheProgressBar>
 
     <TheForm></TheForm>
 
@@ -12,12 +13,14 @@
 import TheHeader from "./components/TheHeader.vue";
 import TheForm from "./components/Form/TheForm.vue";
 import TheFooter from "./components/TheFooter.vue";
+import TheProgressBar from "./components/TheProgressBar.vue";
 
 export default {
   components: {
     TheHeader,
     TheForm,
-    TheFooter
+    TheFooter,
+    TheProgressBar
   }
 };
 </script>
@@ -30,7 +33,6 @@ export default {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  padding: 2rem;
 }
 .footer {
   display: flex;
