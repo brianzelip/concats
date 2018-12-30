@@ -1,22 +1,15 @@
 <template>
   <section id="progress">
-    <div>
-      <PlusSquareSvg></PlusSquareSvg>
-    </div>
-    <div>
-      <TasksSvg></TasksSvg>
-    </div>
-    <div>
-      <FileDownloadSvg></FileDownloadSvg>
-    </div>
-    <!-- <div><img src="../assets/.svg" alt=""></div> -->
+    <PlusSquareSvg class="icon"></PlusSquareSvg>
+    <TasksSvg class="icon"></TasksSvg>
+    <FileDownloadSvg class="icon"></FileDownloadSvg>
   </section>
 </template>
 
 <script>
-import PlusSquareSvg from "./SVG/PlusSquare.vue";
-import TasksSvg from "./SVG/Tasks.vue";
-import FileDownloadSvg from "./SVG/FileDownload.vue";
+import PlusSquareSvg from "../assets/plus-square.svg";
+import TasksSvg from "../assets/tasks.svg";
+import FileDownloadSvg from "../assets/file-download.svg";
 
 export default {
   components: {
@@ -27,7 +20,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 #progress {
   background: black;
@@ -36,9 +28,9 @@ export default {
   display: flex;
   justify-content: center;
 }
-div {
-  height: 100px;
-  width: 100px;
+.icon {
+  width: 50px;
+  height: 50px;
+  fill: white;
 }
 </style>
-
