@@ -1,13 +1,13 @@
 <template>
   <section id="output">
     <p>Preview of output:</p>
-    <pre>{{ output }}</pre>
+    <pre>{{ csvOutput }}</pre>
   </section>
 </template>
 
 <script>
 export default {
-  props: ["output"]
+  props: ["csvOutput"]
 };
 </script>
 
@@ -18,7 +18,6 @@ section {
 p {
   font-weight: bold;
   margin: 0 0 1rem 0;
-  padding-top: 1rem;
 }
 </style>
 
