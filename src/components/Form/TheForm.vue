@@ -1,5 +1,10 @@
 <template>
   <form name="concatsForm">
+    <TheResetBtn
+      v-if="fileHasBeenProcessed"
+      v-on:reset-app="resetApp"
+    ></TheResetBtn>
+
     <transition
       mode="out-in"
       name="fade"
@@ -8,7 +13,6 @@
         :is="currentSelector"
         v-bind="currentSelectorProps"
         v-on:file-input="getInputFile"
-        v-on:reset-app="resetApp"
         v-on:user-selected-headers-change="updateUserSelectedHeaders"
         v-on:user-selected-headers-submitted="setCsvOutput"
       ></component>
@@ -24,6 +28,7 @@ import CSV from "csvtojson";
 import TheFileSelector from "./TheFileSelector.vue";
 import TheHeadersSelector from "./TheHeadersSelector.vue";
 import TheOutput from "./TheOutput.vue";
+import TheResetBtn from "./TheResetBtn.vue";
 
 export default {
   data() {
@@ -55,7 +60,8 @@ export default {
   components: {
     TheFileSelector,
     TheHeadersSelector,
-    TheOutput
+    TheOutput,
+    TheResetBtn
   },
   methods: {
     getInputFile(e) {
