@@ -23,6 +23,7 @@
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
     "vue-cli-plugin-electron-builder": "^1.0.0-rc.9",
+    "vue-svg-loader": "^0.11.0",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
