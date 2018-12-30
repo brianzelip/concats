@@ -1,30 +1,22 @@
 <template>
   <form name="concatsForm">
-    <TheFileSelector v-on:file-input="getInputFile"></TheFileSelector>
-
-    <TheHeadersSelector
-      :headers="csvInputHeaders"
-      v-if="csvInputHeaders.length > 0"
-      v-on:user-selected-headers-change="updateUserSelectedHeaders"
-    ></TheHeadersSelector>
-
-    <TheHeadersSelection
-      :headers="userSelectedHeaders"
-      v-if="userSelectedHeaders.length > 0"
-    ></TheHeadersSelection>
-
-    <TheControls
-      :csvOutput="csvOutput"
-      :submitted="submitted"
-      v-if="userSelectedHeaders.length > 0"
-      v-on:input-submitted="setCsvOutput"
+    <TheResetBtn
+      v-if="fileHasBeenProcessed"
       v-on:reset-app="resetApp"
-    ></TheControls>
+    ></TheResetBtn>
 
-    <TheOutput
-      :output="csvOutput"
-      v-if="csvOutput.length > 0"
-    ></TheOutput>
+    <transition
+      mode="out-in"
+      name="fade"
+    >
+      <component
+        :is="currentSelector"
+        v-bind="currentSelectorProps"
+        v-on:file-input="getInputFile"
+        v-on:user-selected-headers-change="updateUserSelectedHeaders"
+        v-on:user-selected-headers-submitted="setCsvOutput"
+      ></component>
+    </transition>
   </form>
 </template>
 
@@ -35,9 +27,8 @@ import CSV from "csvtojson";
 
 import TheFileSelector from "./TheFileSelector.vue";
 import TheHeadersSelector from "./TheHeadersSelector.vue";
-import TheHeadersSelection from "./TheHeadersSelection.vue";
-import TheControls from "./TheControls.vue";
 import TheOutput from "./TheOutput.vue";
+import TheResetBtn from "./TheResetBtn.vue";
 
 export default {
   data() {
@@ -47,15 +38,30 @@ export default {
       userSelectedHeaders: [],
       csvAsJson: [],
       csvOutput: "",
-      submitted: false
+      submitted: false,
+      currentSelector: "TheFileSelector"
     };
+  },
+  computed: {
+    fileHasBeenProcessed() {
+      return this.csvAsJson.length > 0;
+    },
+    headersHaveBeenSubmitted() {
+      return this.csvInputHeaders.length > 0 && this.csvOutput.length > 0;
+    },
+    currentSelectorProps() {
+      return this.currentSelector === "TheFileSelector"
+        ? {}
+        : this.currentSelector === "TheHeadersSelector"
+        ? { headers: this.csvInputHeaders }
+        : { csvOutput: this.csvOutput };
+    }
   },
   components: {
     TheFileSelector,
     TheHeadersSelector,
-    TheHeadersSelection,
-    TheControls,
-    TheOutput
+    TheOutput,
+    TheResetBtn
   },
   methods: {
     getInputFile(e) {
@@ -76,6 +82,9 @@ export default {
           })
           .then(json => {
             vm.setCsvAsJson(json);
+          })
+          .then(() => {
+            vm.currentSelector = "TheHeadersSelector";
           });
       };
     },
@@ -102,7 +111,7 @@ export default {
           return acc;
         }, [])
         .join("\n");
-      this.submitted = !this.submitted;
+      this.currentSelector = "TheOutput";
       this.saveFile(this.csvOutput);
     },
     saveFile(data) {
@@ -123,6 +132,7 @@ export default {
       this.csvAsJson = [];
       this.csvOutput = "";
       this.submitted = false;
+      this.currentSelector = "TheFileSelector";
     }
   }
 };
@@ -131,5 +141,13 @@ export default {
 <style scoped>
 form {
   margin-bottom: 2rem;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
