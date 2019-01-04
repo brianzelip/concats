@@ -1,9 +1,16 @@
 <template>
   <main class="container">
     <!-- <TheHeader></TheHeader> -->
-    <TheProgressBar></TheProgressBar>
+    <TheProgressBar
+      :onDownload="onDownload"
+      :onFileInput="onFileInput"
+      :onHeadersInput="onHeadersInput"
+    ></TheProgressBar>
 
-    <TheForm></TheForm>
+    <TheForm
+      v-on:file-has-been-processed="stepOneComplete"
+      v-on:headers-have-been-submitted="stepTwoComplete"
+    ></TheForm>
 
     <TheFooter class="footer"></TheFooter>
   </main>
@@ -21,6 +28,23 @@ export default {
     TheForm,
     TheFooter,
     TheProgressBar
+  },
+  data() {
+    return {
+      onFileInput: true,
+      onHeadersInput: false,
+      onDownload: false
+    };
+  },
+  methods: {
+    stepOneComplete() {
+      this.onFileInput = false;
+      this.onHeadersInput = true;
+    },
+    stepTwoComplete() {
+      this.onHeadersInput = false;
+      this.onDownload = true;
+    }
   }
 };
 </script>
