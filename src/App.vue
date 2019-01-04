@@ -8,8 +8,9 @@
     ></TheProgressBar>
 
     <TheForm
-      v-on:file-has-been-processed="stepOneComplete"
-      v-on:headers-have-been-submitted="stepTwoComplete"
+      v-on:file-has-been-processed="onHeadersInput = true"
+      v-on:headers-have-been-submitted="onDownload = true"
+      v-on:reset="reset"
     ></TheForm>
 
     <TheFooter class="footer"></TheFooter>
@@ -44,6 +45,11 @@ export default {
     stepTwoComplete() {
       this.onHeadersInput = false;
       this.onDownload = true;
+    },
+    reset() {
+      this.onFileInput = true;
+      this.onHeadersInput = false;
+      this.onDownload = false;
     }
   }
 };
