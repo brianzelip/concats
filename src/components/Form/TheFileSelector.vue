@@ -21,9 +21,6 @@
 </template>
 
 <style scoped>
-section {
-  margin-bottom: 2rem;
-}
 label {
   margin-right: 1rem;
   font-weight: bold;
