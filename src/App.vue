@@ -7,6 +7,7 @@
     ></TheProgressBar>
 
     <TheForm
+      class="form"
       v-on:file-has-been-processed="onHeadersInput = true"
       v-on:reset="reset"
       v-on:user-selected-headers-submitted="onDownload = true"
@@ -61,10 +62,12 @@ export default {
   min-height: 100vh;
   flex-direction: column;
 }
+.form {
+  flex-grow: 1;
+}
 .footer {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   justify-content: flex-end;
 }
 </style>
