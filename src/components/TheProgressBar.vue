@@ -65,5 +65,6 @@ export default {
 .stage.iscomplete,
 .arrow.iscomplete {
   opacity: 1;
+  transition: opacity 0.6s;
 }
 </style>
