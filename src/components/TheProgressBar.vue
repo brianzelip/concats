@@ -1,29 +1,29 @@
 <template>
   <section id="progress">
-    <PlusSquareSvg
-      :class="{iscomplete: haveFileInput }"
+    <FilePlusSvg
+      :class="{iscomplete: onFileInput }"
       class="icon"
-    ></PlusSquareSvg>
+    ></FilePlusSvg>
     <TasksSvg
-      :class="{iscomplete: haveHeadersInput }"
+      :class="{iscomplete: onHeadersInput }"
       class="icon"
     ></TasksSvg>
     <FileDownloadSvg
-      :class="{iscomplete: haveDownloaded }"
+      :class="{iscomplete: onDownload }"
       class="icon"
     ></FileDownloadSvg>
   </section>
 </template>
 
 <script>
-import PlusSquareSvg from "../assets/plus-square.svg";
+import FilePlusSvg from "../assets/file-plus.svg";
 import TasksSvg from "../assets/tasks.svg";
 import FileDownloadSvg from "../assets/file-download.svg";
 
 export default {
-  props: ["haveFileInput", "haveHeadersInput", "haveDownloaded"],
+  props: ["onFileInput", "onHeadersInput", "onDownload"],
   components: {
-    PlusSquareSvg,
+    FilePlusSvg,
     TasksSvg,
     FileDownloadSvg
   }
