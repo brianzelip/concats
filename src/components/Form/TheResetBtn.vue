@@ -3,15 +3,15 @@
     <button
       @click.prevent="$emit('reset-app')"
       class="btn btn-primary"
-    >RESET DATA</button>
+    >Reset</button>
   </transition>
 </template>
 
 <style>
 button {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  left: 2rem;
 }
 .btn {
   font-family: inherit;
@@ -64,7 +64,7 @@ button {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s;
+  transition: opacity 0.5s;
 }
 .fade-enter,
 .fade-leave-to {
