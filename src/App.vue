@@ -9,8 +9,8 @@
 
     <TheForm
       v-on:file-has-been-processed="onHeadersInput = true"
-      v-on:headers-have-been-submitted="onDownload = true"
       v-on:reset="reset"
+      v-on:user-selected-headers-submitted="onDownload = true"
     ></TheForm>
 
     <TheFooter class="footer"></TheFooter>

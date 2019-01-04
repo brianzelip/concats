@@ -116,6 +116,7 @@ export default {
         }, [])
         .join("\n");
       this.currentSelector = "TheOutput";
+      this.$emit("user-selected-headers-submitted");
       this.saveFile(this.csvOutput);
     },
     saveFile(data) {
