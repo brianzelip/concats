@@ -44,7 +44,11 @@ export default {
   },
   computed: {
     fileHasBeenProcessed() {
-      return this.csvAsJson.length > 0;
+      if (this.csvAsJson.length > 0) {
+        this.$emit("file-has-been-processed");
+        return true;
+      }
+      return false;
     },
     headersHaveBeenSubmitted() {
       return this.csvInputHeaders.length > 0 && this.csvOutput.length > 0;
@@ -133,6 +137,7 @@ export default {
       this.csvOutput = "";
       this.submitted = false;
       this.currentSelector = "TheFileSelector";
+      this.$emit("reset");
     }
   }
 };
