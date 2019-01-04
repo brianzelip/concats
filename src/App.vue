@@ -1,6 +1,5 @@
 <template>
   <main class="container">
-    <!-- <TheHeader></TheHeader> -->
     <TheProgressBar
       :onDownload="onDownload"
       :onFileInput="onFileInput"
@@ -18,14 +17,12 @@
 </template>
 
 <script>
-import TheHeader from "./components/TheHeader.vue";
 import TheForm from "./components/Form/TheForm.vue";
 import TheFooter from "./components/TheFooter.vue";
 import TheProgressBar from "./components/TheProgressBar.vue";
 
 export default {
   components: {
-    TheHeader,
     TheForm,
     TheFooter,
     TheProgressBar
