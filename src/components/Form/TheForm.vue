@@ -12,7 +12,7 @@
       <component
         :is="currentSelector"
         v-bind="currentSelectorProps"
-        v-on:file-input="getInputFile"
+        v-on:file-input="handleInputFile"
         v-on:user-selected-headers-change="updateUserSelectedHeaders"
         v-on:user-selected-headers-submitted="setCsvOutput"
       ></component>
