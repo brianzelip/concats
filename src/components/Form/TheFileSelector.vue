@@ -2,7 +2,7 @@
   <section id="fileSelector">
     <div
       @dragover.prevent
-      @drop.prevent="$emit('file-input', $event)"
+      @drop.prevent="handleFileDrop($event)"
       class="dropzone"
     >
       <label for="fileInput">Select file:</label>
@@ -19,6 +19,17 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  methods: {
+    handleFileSelect() {},
+    handleFileDrop(e) {
+      this.$emit("file-input", e.dataTransfer.files[0]);
+    }
+  }
+};
+</script>
 
 <style scoped>
 section {
