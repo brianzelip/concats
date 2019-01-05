@@ -146,6 +146,7 @@ export default {
 
 <style scoped>
 form {
+  display: flex;
   padding: 2rem;
 }
 .fade-enter-active,
