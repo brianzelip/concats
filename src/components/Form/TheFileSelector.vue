@@ -21,11 +21,16 @@
 </template>
 
 <style scoped>
+section {
+  display: flex;
+  flex-grow: 1;
+}
 label {
   margin-right: 1rem;
   font-weight: bold;
 }
 .dropzone {
+  flex-grow: 1;
   padding: 1rem;
   border-style: dashed;
 }
