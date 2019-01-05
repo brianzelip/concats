@@ -12,7 +12,7 @@
       <component
         :is="currentSelector"
         v-bind="currentSelectorProps"
-        v-on:file-input="handleInputFile"
+        v-on:file-input="handleInputFilePath"
         v-on:user-selected-headers-change="updateUserSelectedHeaders"
         v-on:user-selected-headers-submitted="setCsvOutput"
       ></component>
@@ -70,13 +70,13 @@ export default {
   methods: {
     getInputFile(e) {
       const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-      this.handleInputFile(file);
+      this.handleInputFilePath(file);
     },
-    handleInputFile(file) {
+    handleInputFilePath(path) {
       const vm = this;
       const reader = new FileReader();
 
-      reader.readAsText(file);
+      reader.readAsText(path);
       reader.onload = function(event) {
         vm.csvInput = event.target.result;
         CSV({ delimiter: ["\t", ","] })
