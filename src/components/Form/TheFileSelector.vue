@@ -1,22 +1,20 @@
 <template>
   <section id="fileSelector">
     <div
+      :class="{isactive}"
       @click="handleFileSelect($event)"
+      @dragenter="isactive = !isactive"
+      @dragleave="isactive = !isactive"
       @dragover.prevent
       @drop.prevent="handleFileDrop($event)"
       class="dropzone"
     >
-      <label for="fileInput">Select file:</label>
-      <input
-        @change="$emit('file-input', $event)"
-        accept=".csv, .tsv"
-        id="fileInput"
-        name="fileInput"
-        text="Browse"
-        type="file"
-      >
-      <p class="or">or</p>
-      <p class="drag">Drag and drop file here</p>
+      <p>click to select file</p>
+      <PlusCircleSvg
+        :class="{ isactive }"
+        class="add"
+      ></PlusCircleSvg>
+      <p>or drag and drop file here</p>
     </div>
   </section>
 </template>
@@ -25,9 +23,16 @@
 const fs = require("fs");
 const { dialog } = require("electron").remote;
 
+import PlusCircleSvg from "../../assets/plus-circle.svg";
+
 export default {
+  data() {
+    return {
+      isactive: false
+    };
+  },
   methods: {
-    handleFileSelect(e) {
+    handleFileSelect() {
       const vm = this;
       dialog.showOpenDialog(
         {
@@ -47,6 +52,9 @@ export default {
       const fileAsFileObj = e.dataTransfer.files[0];
       this.$emit("file-input", fileAsFileObj);
     }
+  },
+  components: {
+    PlusCircleSvg
   }
 };
 </script>
@@ -62,15 +70,29 @@ label {
 }
 .dropzone {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
+  border-width: 4px;
   border-style: dashed;
+  border-color: rgba(0, 0, 0, 0.333);
+  transition: border-color 0.3s;
 }
-.or {
-  margin: 0.5rem 0;
-  font-style: italic;
+.add {
+  fill: black;
+  opacity: 0.333;
+  width: 50px;
+  height: 50px;
+  transition: opacity 0.3s;
 }
-.drag {
-  margin: 0;
-  font-weight: bold;
+.add.isactive {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.dropzone.isactive {
+  border-color: rgba(0, 0, 0, 1);
+  transition: border-color 0.3s;
 }
 </style>
