@@ -20,7 +20,6 @@
       :class="{iscomplete: onDownload }"
       class="stage"
     ></FileDownloadSvg>
-    <InfoCircleSvg class="info"></InfoCircleSvg>
   </section>
 </template>
 
@@ -29,7 +28,6 @@ import FilePlusSvg from "../assets/file-plus.svg";
 import TasksSvg from "../assets/tasks.svg";
 import FileDownloadSvg from "../assets/file-download.svg";
 import AngleRightSvg from "../assets/angle-right.svg";
-import InfoCircleSvg from "../assets/info-circle.svg";
 
 export default {
   props: ["onFileInput", "onHeadersInput", "onDownload"],
@@ -37,15 +35,13 @@ export default {
     FilePlusSvg,
     TasksSvg,
     FileDownloadSvg,
-    AngleRightSvg,
-    InfoCircleSvg
+    AngleRightSvg
   }
 };
 </script>
 
 <style scoped>
 #progress {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,18 +66,5 @@ export default {
 .arrow.iscomplete {
   opacity: 1;
   transition: opacity 1.25s;
-}
-.info {
-  position: absolute;
-  right: 0;
-  width: 25px;
-  height: 25px;
-  fill: black;
-  opacity: 0.333;
-  transition: opacity 0.1s ease-in;
-}
-.info:hover {
-  opacity: 1;
-  transition: opacity 0.1s ease-in;
 }
 </style>
