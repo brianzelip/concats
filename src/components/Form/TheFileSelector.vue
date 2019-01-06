@@ -38,10 +38,6 @@ export default {
         filePaths => {
           if (filePaths[0] === undefined) return;
           fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
-            console.log(
-              "fs says fileAsString is a:: typeof fileAsString",
-              typeof fileAsString
-            );
             vm.$emit("file-input", fileAsString);
           });
         }
