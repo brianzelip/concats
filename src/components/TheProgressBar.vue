@@ -74,9 +74,14 @@ export default {
 .info {
   position: absolute;
   right: 0;
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   fill: black;
   opacity: 0.333;
+  transition: opacity 0.1s ease-in;
+}
+.info:hover {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
 }
 </style>
