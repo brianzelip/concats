@@ -3,18 +3,20 @@
     <div
       :class="{isactive}"
       @click="handleFileSelect($event)"
-      @dragenter="isactive = !isactive"
-      @dragleave="isactive = !isactive"
+      @dragenter="isactive = true"
+      @dragleave="isactive = false"
       @dragover.prevent
       @drop.prevent="handleFileDrop($event)"
+      @mouseenter="isactive = true"
+      @mouseleave="isactive = false"
       class="dropzone"
     >
-      <p>click to select file</p>
-      <PlusCircleSvg
+      <p>click to select a file</p>
+      <PlusSvg
         :class="{ isactive }"
         class="add"
-      ></PlusCircleSvg>
-      <p>or drag and drop file here</p>
+      ></PlusSvg>
+      <p>or drag and drop a file</p>
     </div>
   </section>
 </template>
@@ -23,7 +25,7 @@
 const fs = require("fs");
 const { dialog } = require("electron").remote;
 
-import PlusCircleSvg from "../../assets/plus-circle.svg";
+import PlusSvg from "../../assets/plus.svg";
 
 export default {
   data() {
@@ -54,7 +56,7 @@ export default {
     }
   },
   components: {
-    PlusCircleSvg
+    PlusSvg
   }
 };
 </script>
@@ -83,8 +85,8 @@ label {
 .add {
   fill: black;
   opacity: 0.333;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   transition: opacity 0.3s;
 }
 .add.isactive {
