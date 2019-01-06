@@ -1,6 +1,7 @@
 <template>
   <form name="concatsForm">
     <TheResetBtn
+      class="reset"
       v-if="fileHasBeenProcessed"
       v-on:reset-app="resetApp"
     ></TheResetBtn>
@@ -12,7 +13,7 @@
       <component
         :is="currentSelector"
         v-bind="currentSelectorProps"
-        v-on:file-input="getInputFile"
+        v-on:file-input="handleInputFile"
         v-on:user-selected-headers-change="updateUserSelectedHeaders"
         v-on:user-selected-headers-submitted="setCsvOutput"
       ></component>
@@ -44,7 +45,11 @@ export default {
   },
   computed: {
     fileHasBeenProcessed() {
-      return this.csvAsJson.length > 0;
+      if (this.csvAsJson.length > 0) {
+        this.$emit("file-has-been-processed");
+        return true;
+      }
+      return false;
     },
     headersHaveBeenSubmitted() {
       return this.csvInputHeaders.length > 0 && this.csvOutput.length > 0;
@@ -64,19 +69,14 @@ export default {
     TheResetBtn
   },
   methods: {
-    getInputFile(e) {
-      const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-      this.handleInputFile(file);
-    },
     handleInputFile(file) {
       const vm = this;
       const reader = new FileReader();
 
-      reader.readAsText(file);
-      reader.onload = function(event) {
-        vm.csvInput = event.target.result;
+      const convertFileToJson = fileContent => {
+        vm.csvInput = fileContent;
         CSV({ delimiter: ["\t", ","] })
-          .fromString(vm.csvInput)
+          .fromString(fileContent)
           .on("header", header => {
             vm.setCsvInputHeaders(header);
           })
@@ -87,6 +87,15 @@ export default {
             vm.currentSelector = "TheHeadersSelector";
           });
       };
+
+      if (typeof file === "string") {
+        convertFileToJson(file);
+      } else if (typeof file === "object") {
+        reader.readAsText(file);
+        reader.onload = function(event) {
+          convertFileToJson(event.target.result);
+        };
+      }
     },
     setCsvInputHeaders(data) {
       this.csvInputHeaders = data;
@@ -112,6 +121,7 @@ export default {
         }, [])
         .join("\n");
       this.currentSelector = "TheOutput";
+      this.$emit("user-selected-headers-submitted");
       this.saveFile(this.csvOutput);
     },
     saveFile(data) {
@@ -133,6 +143,7 @@ export default {
       this.csvOutput = "";
       this.submitted = false;
       this.currentSelector = "TheFileSelector";
+      this.$emit("reset");
     }
   }
 };
@@ -140,7 +151,8 @@ export default {
 
 <style scoped>
 form {
-  margin-bottom: 2rem;
+  display: flex;
+  margin: 1rem;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -149,5 +161,10 @@ form {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.reset {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }
 </style>

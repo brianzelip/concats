@@ -35,6 +35,7 @@ export default {
 
 <style>
 footer {
+  padding: 0 1rem 1rem 1rem;
   color: #aaa;
 }
 a {
