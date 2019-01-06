@@ -68,18 +68,14 @@ export default {
     TheResetBtn
   },
   methods: {
-    getInputFile(e) {
-      const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-      this.handleInputFile(file);
-    },
     handleInputFile(file) {
       const vm = this;
       const reader = new FileReader();
-      console.log("typeof file:", typeof file);
-      if (typeof file === "string") {
-        vm.csvInput = file;
+
+      const convertFileToJson = fileContent => {
+        vm.csvInput = fileContent;
         CSV({ delimiter: ["\t", ","] })
-          .fromString(file)
+          .fromString(fileContent)
           .on("header", header => {
             vm.setCsvInputHeaders(header);
           })
@@ -89,21 +85,14 @@ export default {
           .then(() => {
             vm.currentSelector = "TheHeadersSelector";
           });
-      } else {
+      };
+
+      if (typeof file === "string") {
+        convertFileToJson(file);
+      } else if (typeof file === "object") {
         reader.readAsText(file);
         reader.onload = function(event) {
-          vm.csvInput = event.target.result;
-          CSV({ delimiter: ["\t", ","] })
-            .fromString(vm.csvInput)
-            .on("header", header => {
-              vm.setCsvInputHeaders(header);
-            })
-            .then(json => {
-              vm.setCsvAsJson(json);
-            })
-            .then(() => {
-              vm.currentSelector = "TheHeadersSelector";
-            });
+          convertFileToJson(event.target.result);
         };
       }
     },
