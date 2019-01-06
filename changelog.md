@@ -45,4 +45,6 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 
 - replace header with thin icon progress bar showing the app workflow steps in total and which step the user is currently on
 - add reset button to this progress bar area
-- reconsider metadata from header and footer, rewrite it all somehow in the footer
+- reconsider metadata from header and footer, make it all available via OS native menus, NOT via app UI
+- expand the drop zone, and the click area for user to select input file
+- make app ui more minimal centered around app workflow
