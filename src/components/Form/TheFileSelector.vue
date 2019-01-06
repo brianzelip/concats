@@ -51,6 +51,13 @@ export default {
       );
     },
     handleFileDrop(e) {
+      const fileName = e.dataTransfer.files[0].name;
+      const re = /(\.[tc]sv)$/gi;
+
+      if (fileName.search(re) === -1) {
+        return;
+      }
+
       const fileAsFileObj = e.dataTransfer.files[0];
       this.$emit("file-input", fileAsFileObj);
     }
