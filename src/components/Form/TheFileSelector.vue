@@ -1,6 +1,7 @@
 <template>
   <section id="fileSelector">
     <div
+      @click="handleFileSelect($event)"
       @dragover.prevent
       @drop.prevent="handleFileDrop($event)"
       class="dropzone"
@@ -21,11 +22,34 @@
 </template>
 
 <script>
+const fs = require("fs");
+const { dialog } = require("electron").remote;
+
 export default {
   methods: {
-    handleFileSelect() {},
+    handleFileSelect(e) {
+      const vm = this;
+      dialog.showOpenDialog(
+        {
+          title: "Select a CSV or TSV file",
+          filters: [{ name: "csv or tsv", extensions: ["csv", "tsv"] }],
+          properties: ["openFile"]
+        },
+        filePaths => {
+          if (filePaths[0] === undefined) return;
+          fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
+            console.log(
+              "fs says fileAsString is a:: typeof fileAsString",
+              typeof fileAsString
+            );
+            vm.$emit("file-input", fileAsString);
+          });
+        }
+      );
+    },
     handleFileDrop(e) {
-      this.$emit("file-input", e.dataTransfer.files[0]);
+      const fileAsFileObj = e.dataTransfer.files[0];
+      this.$emit("file-input", fileAsFileObj);
     }
   }
 };
