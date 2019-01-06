@@ -75,12 +75,11 @@ export default {
     handleInputFile(file) {
       const vm = this;
       const reader = new FileReader();
-
-      reader.readAsText(file);
-      reader.onload = function(event) {
-        vm.csvInput = event.target.result;
+      console.log("typeof file:", typeof file);
+      if (typeof file === "string") {
+        vm.csvInput = file;
         CSV({ delimiter: ["\t", ","] })
-          .fromString(vm.csvInput)
+          .fromString(file)
           .on("header", header => {
             vm.setCsvInputHeaders(header);
           })
@@ -90,7 +89,23 @@ export default {
           .then(() => {
             vm.currentSelector = "TheHeadersSelector";
           });
-      };
+      } else {
+        reader.readAsText(file);
+        reader.onload = function(event) {
+          vm.csvInput = event.target.result;
+          CSV({ delimiter: ["\t", ","] })
+            .fromString(vm.csvInput)
+            .on("header", header => {
+              vm.setCsvInputHeaders(header);
+            })
+            .then(json => {
+              vm.setCsvAsJson(json);
+            })
+            .then(() => {
+              vm.currentSelector = "TheHeadersSelector";
+            });
+        };
+      }
     },
     setCsvInputHeaders(data) {
       this.csvInputHeaders = data;
