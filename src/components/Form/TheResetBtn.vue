@@ -8,11 +8,6 @@
 </template>
 
 <style>
-button {
-  position: absolute;
-  top: 0.75rem;
-  left: 2rem;
-}
 .btn {
   font-family: inherit;
   font-size: inherit;

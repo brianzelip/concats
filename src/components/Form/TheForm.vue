@@ -1,6 +1,7 @@
 <template>
   <form name="concatsForm">
     <TheResetBtn
+      class="reset"
       v-if="fileHasBeenProcessed"
       v-on:reset-app="resetApp"
     ></TheResetBtn>
@@ -160,5 +161,10 @@ form {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.reset {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }
 </style>
