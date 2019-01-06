@@ -12,8 +12,6 @@
       v-on:reset="reset"
       v-on:user-selected-headers-submitted="onDownload = true"
     ></TheForm>
-
-    <TheFooter class="footer"></TheFooter>
   </main>
 </template>
 
