@@ -17,13 +17,11 @@
 
 <script>
 import TheForm from "./components/Form/TheForm.vue";
-import TheFooter from "./components/TheFooter.vue";
 import TheProgressBar from "./components/TheProgressBar.vue";
 
 export default {
   components: {
     TheForm,
-    TheFooter,
     TheProgressBar
   },
   data() {
