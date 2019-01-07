@@ -1,7 +1,13 @@
 {
   "name": "concats",
+  "description": "Output a single-column csv file containing rows of concatenated fields from an input csv file. Desktop app built using Electron.js and Vue.js.",
   "version": "1.7.4",
   "private": false,
+  "author": {
+    "name": "Brian Zelip"
+  },
+  "homepage": "https://github.com/brianzelip/concats",
+  "repository": "https://github.com/brianzelip/concats",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
