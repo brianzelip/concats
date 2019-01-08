@@ -1,6 +1,6 @@
 'use strict';
 
-import { app, protocol, BrowserWindow } from 'electron';
+import { app, protocol, BrowserWindow, Screen } from 'electron';
 import {
   createProtocol,
   installVueDevtools
@@ -15,7 +15,12 @@ let win;
 protocol.registerStandardSchemes(['app'], { secure: true });
 function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow({ width: 800, height: 600 });
+  win = new BrowserWindow({
+    center: true,
+    maxWidth: 1600
+  });
+
+  win.maximize();
 
   if (isDevelopment || process.env.IS_TEST) {
     // Load the url of the dev server if in development mode
