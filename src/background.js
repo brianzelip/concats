@@ -1,6 +1,6 @@
 'use strict';
 
-import { app, protocol, BrowserWindow, Screen } from 'electron';
+import { app, protocol, BrowserWindow, Menu, dialog } from 'electron';
 import {
   createProtocol,
   installVueDevtools
@@ -63,6 +63,105 @@ app.on('ready', async () => {
     await installVueDevtools();
   }
   createWindow();
+});
+app.on('ready', () => {
+  const template = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open',
+          click() {
+            dialog.showOpenDialog(
+              {
+                title: 'Select a CSV or TSV file',
+                filters: [{ name: 'csv or tsv', extensions: ['csv', 'tsv'] }],
+                properties: ['openFile']
+              },
+              filePaths => {
+                win.webContents.send('file-loaded', filePaths[0]);
+                console.log('filePaths', filePaths);
+              }
+            );
+          }
+        },
+        { role: 'add' },
+        { role: 'redo' },
+        { type: 'separator' },
+        { role: 'cut' },
+        { role: 'copy' },
+        { role: 'paste' },
+        { role: 'pasteandmatchstyle' },
+        { role: 'delete' },
+        { role: 'selectall' }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forcereload' },
+        { role: 'toggledevtools' },
+        { type: 'separator' },
+        { role: 'resetzoom' },
+        { role: 'zoomin' },
+        { role: 'zoomout' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
+      ]
+    },
+    { role: 'window', submenu: [{ role: 'minimize' }, { role: 'close' }] },
+    {
+      role: 'help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click() {
+            require('electron').shell.openExternal('https://electronjs.org');
+          }
+        }
+      ]
+    }
+  ];
+
+  if (process.platform === 'darwin') {
+    template.unshift({
+      label: app.getName(),
+      submenu: [
+        { role: 'about' },
+        { type: 'separator' },
+        { role: 'services' },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideothers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' }
+      ]
+    });
+
+    // Edit menu
+    template[1].submenu.push(
+      { type: 'separator' },
+      {
+        label: 'Speech',
+        submenu: [{ role: 'startspeaking' }, { role: 'stopspeaking' }]
+      }
+    );
+
+    // Window menu
+    template[3].submenu = [
+      { role: 'close' },
+      { role: 'minimize' },
+      { role: 'zoom' },
+      { type: 'separator' },
+      { role: 'front' }
+    ];
+  }
+
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+  console.log('hello from second ready! READY ROCK!');
 });
 
 // Exit cleanly on request from parent process in development mode.
