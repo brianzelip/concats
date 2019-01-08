@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { ipcRenderer } from "electron";
+
 import TheForm from "./components/Form/TheForm.vue";
 import TheProgressBar from "./components/TheProgressBar.vue";
 
@@ -45,6 +47,12 @@ export default {
       this.onHeadersInput = false;
       this.onDownload = false;
     }
+  },
+  mounted() {
+    console.log("ipcRenderer", ipcRenderer);
+    ipcRenderer.on("file-loaded", (e, path) => {
+      console.log("THE PATH IS!!!", path);
+    });
   }
 };
 </script>
