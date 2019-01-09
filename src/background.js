@@ -95,8 +95,6 @@ app.on('ready', () => {
     {
       label: 'View',
       submenu: [
-        { role: 'reload' },
-        { role: 'forcereload' },
         { role: 'toggledevtools' },
         { type: 'separator' },
         { role: 'resetzoom' },
@@ -108,15 +106,10 @@ app.on('ready', () => {
     },
     { role: 'window', submenu: [{ role: 'minimize' }, { role: 'close' }] },
     {
-      role: 'help',
-      submenu: [
-        {
-          label: 'Learn More',
-          click() {
-            require('electron').shell.openExternal('https://electronjs.org');
-          }
-        }
-      ]
+      label: 'About',
+      click() {
+        require('electron').shell.openExternal('https://electronjs.org');
+      }
     }
   ];
 
