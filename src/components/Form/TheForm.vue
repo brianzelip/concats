@@ -24,6 +24,7 @@
 <script>
 const fs = require("fs");
 const { dialog } = require("electron").remote;
+import { ipcRenderer } from "electron";
 import CSV from "csvtojson";
 
 import TheFileSelector from "./TheFileSelector.vue";
@@ -145,6 +146,11 @@ export default {
       this.currentSelector = "TheFileSelector";
       this.$emit("reset");
     }
+  },
+  mounted() {
+    ipcRenderer.on("reset-app", () => {
+      this.resetApp();
+    });
   }
 };
 </script>
