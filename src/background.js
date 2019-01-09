@@ -79,8 +79,10 @@ app.on('ready', () => {
                 properties: ['openFile']
               },
               filePaths => {
-                win.webContents.send('file-loaded', filePaths[0]);
-                console.log('filePaths', filePaths);
+                if (filePaths != undefined) {
+                  win.webContents.send('file-loaded', filePaths[0]);
+                  console.log('filePaths', filePaths);
+                }
               }
             );
           }
