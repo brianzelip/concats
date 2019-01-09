@@ -87,15 +87,12 @@ app.on('ready', () => {
             );
           }
         },
-        { role: 'add' },
-        { role: 'redo' },
-        { type: 'separator' },
-        { role: 'cut' },
-        { role: 'copy' },
-        { role: 'paste' },
-        { role: 'pasteandmatchstyle' },
-        { role: 'delete' },
-        { role: 'selectall' }
+        {
+          label: 'Reset',
+          click() {
+            win.webContents.send('reset-app');
+          }
+        }
       ]
     },
     {
