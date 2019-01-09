@@ -15,10 +15,7 @@ let win;
 protocol.registerStandardSchemes(['app'], { secure: true });
 function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow({
-    center: true,
-    maxWidth: 1600
-  });
+  win = new BrowserWindow();
 
   win.maximize();
 
