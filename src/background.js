@@ -68,6 +68,7 @@ app.on('ready', () => {
       submenu: [
         {
           label: 'Open',
+          accelerator: 'CmdOrCtrl+O',
           click() {
             dialog.showOpenDialog(
               {
