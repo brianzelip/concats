@@ -89,7 +89,8 @@ app.on('ready', () => {
           label: 'Reset',
           click() {
             win.webContents.send('reset-app');
-          }
+          },
+          accelerator: 'CmdOrCtrl+R'
         }
       ]
     },
