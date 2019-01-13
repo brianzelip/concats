@@ -47,12 +47,6 @@ export default {
       this.onHeadersInput = false;
       this.onDownload = false;
     }
-  },
-  mounted() {
-    console.log("ipcRenderer", ipcRenderer);
-    ipcRenderer.on("file-loaded", (e, path) => {
-      console.log("THE PATH IS!!!", path);
-    });
   }
 };
 </script>
