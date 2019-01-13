@@ -1,5 +1,6 @@
 'use strict';
 
+import fs from 'fs';
 import { app, protocol, BrowserWindow, Menu, dialog } from 'electron';
 import {
   createProtocol,
@@ -78,8 +79,12 @@ app.on('ready', () => {
               },
               filePaths => {
                 if (filePaths != undefined) {
-                  win.webContents.send('file-loaded', filePaths[0]);
-                  console.log('filePaths', filePaths);
+                  fs.readFile(filePaths[0], 'utf-8', function(
+                    err,
+                    fileAsString
+                  ) {
+                    win.webContents.send('file-input', fileAsString);
+                  });
                 }
               }
             );
