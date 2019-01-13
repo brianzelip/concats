@@ -1,11 +1,15 @@
 'use strict';
 
 import fs from 'fs';
+
 import { app, protocol, BrowserWindow, Menu, dialog } from 'electron';
 import {
   createProtocol,
   installVueDevtools
 } from 'vue-cli-plugin-electron-builder/lib';
+
+import { homepage } from '../package.json';
+
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -113,10 +117,15 @@ app.on('ready', () => {
     },
     { role: 'window', submenu: [{ role: 'minimize' }, { role: 'close' }] },
     {
-      label: 'About',
-      click() {
-        require('electron').shell.openExternal('https://electronjs.org');
-      }
+      label: 'Info',
+      submenu: [
+        {
+          label: 'Go to concats homepage →',
+          click() {
+            require('electron').shell.openExternal(homepage);
+          }
+        }
+      ]
     }
   ];
 
