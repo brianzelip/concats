@@ -151,6 +151,9 @@ export default {
     ipcRenderer.on("reset-app", () => {
       this.resetApp();
     });
+    ipcRenderer.on("file-input", (e, filePath) => {
+      this.handleInputFile(filePath);
+    });
   }
 };
 </script>
