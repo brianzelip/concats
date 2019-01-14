@@ -100,7 +100,9 @@ app.on('ready', () => {
             win.webContents.send('reset-app');
           },
           accelerator: 'CmdOrCtrl+R'
-        }
+        },
+        { type: 'separator' },
+        { role: 'quit', accelerator: 'CmdOrCtrl+Q' }
       ]
     },
     {
