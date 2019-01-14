@@ -133,7 +133,17 @@ app.on('ready', () => {
     template.unshift({
       label: app.getName(),
       submenu: [
-        { role: 'about' },
+        {
+          label: 'About concats',
+          click() {
+            dialog.showMessageBox(win, {
+              type: 'info',
+              title: 'About concats',
+              message: 'This is the message!',
+              detail: 'This is the detail.'
+            });
+          }
+        },
         { type: 'separator' },
         { role: 'services' },
         { type: 'separator' },
