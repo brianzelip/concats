@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import { ipcRenderer } from "electron";
-
 import TheForm from "./components/Form/TheForm.vue";
 import TheProgressBar from "./components/TheProgressBar.vue";
 
