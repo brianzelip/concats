@@ -1,14 +1,12 @@
 'use strict';
 
-import fs from 'fs';
-
 import { app, protocol, BrowserWindow, Menu, dialog } from 'electron';
 import {
   createProtocol,
   installVueDevtools
 } from 'vue-cli-plugin-electron-builder/lib';
 
-import { homepage } from '../package.json';
+import appMenu from './menus/menu.js';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -65,120 +63,7 @@ app.on('ready', async () => {
     await installVueDevtools();
   }
   createWindow();
-});
-app.on('ready', () => {
-  const template = [
-    {
-      label: 'File',
-      submenu: [
-        {
-          label: 'Open',
-          accelerator: 'CmdOrCtrl+O',
-          click() {
-            dialog.showOpenDialog(
-              {
-                title: 'Select a CSV or TSV file',
-                filters: [{ name: 'csv or tsv', extensions: ['csv', 'tsv'] }],
-                properties: ['openFile']
-              },
-              filePaths => {
-                if (filePaths != undefined) {
-                  fs.readFile(filePaths[0], 'utf-8', function(
-                    err,
-                    fileAsString
-                  ) {
-                    win.webContents.send('file-input', fileAsString);
-                  });
-                }
-              }
-            );
-          }
-        },
-        {
-          label: 'Reset',
-          click() {
-            win.webContents.send('reset-app');
-          },
-          accelerator: 'CmdOrCtrl+R'
-        },
-        { type: 'separator' },
-        { role: 'quit', accelerator: 'CmdOrCtrl+Q' }
-      ]
-    },
-    {
-      label: 'View',
-      submenu: [
-        { role: 'toggledevtools' },
-        { type: 'separator' },
-        { role: 'resetzoom' },
-        { role: 'zoomin' },
-        { role: 'zoomout' },
-        { type: 'separator' },
-        { role: 'togglefullscreen' }
-      ]
-    },
-    { role: 'window', submenu: [{ role: 'minimize' }, { role: 'close' }] },
-    {
-      label: 'Info',
-      submenu: [
-        {
-          label: 'Go to concats homepage →',
-          click() {
-            require('electron').shell.openExternal(homepage);
-          }
-        }
-      ]
-    }
-  ];
-
-  if (process.platform === 'darwin') {
-    template.unshift({
-      label: app.getName(),
-      submenu: [
-        {
-          label: 'About concats',
-          click() {
-            dialog.showMessageBox(win, {
-              type: 'info',
-              title: 'About concats',
-              message: 'This is the message!',
-              detail: 'This is the detail.'
-            });
-          }
-        },
-        { type: 'separator' },
-        { role: 'services' },
-        { type: 'separator' },
-        { role: 'hide' },
-        { role: 'hideothers' },
-        { role: 'unhide' },
-        { type: 'separator' },
-        { role: 'quit' }
-      ]
-    });
-
-    // Edit menu
-    template[1].submenu.push(
-      { type: 'separator' },
-      {
-        label: 'Speech',
-        submenu: [{ role: 'startspeaking' }, { role: 'stopspeaking' }]
-      }
-    );
-
-    // Window menu
-    template[3].submenu = [
-      { role: 'close' },
-      { role: 'minimize' },
-      { role: 'zoom' },
-      { type: 'separator' },
-      { role: 'front' }
-    ];
-  }
-
-  const menu = Menu.buildFromTemplate(template);
-  Menu.setApplicationMenu(menu);
-  console.log('hello from second ready! READY ROCK!');
+  Menu.setApplicationMenu(appMenu(win));
 });
 
 // Exit cleanly on request from parent process in development mode.
