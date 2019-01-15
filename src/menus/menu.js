@@ -7,11 +7,12 @@ import darwinMenu from './darwin';
 
 export default BrowserWindow => {
   const showAbout = () => {
-    dialog.showMessageBox(BrowserWindow, {
+    dialog.showMessageBox({
       type: 'info',
       title: 'About concats',
       message: 'This is the message!',
-      detail: 'This is the detail.'
+      detail: 'This is the detail.',
+      buttons: []
     });
   };
 
