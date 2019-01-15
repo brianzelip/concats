@@ -24,16 +24,5 @@ export default BrowserWindow => {
     infoMenu(showAbout)
   ];
 
-  if (process.platform === 'darwin') {
-    // Window menu
-    template[3].submenu = [
-      { role: 'close' },
-      { role: 'minimize' },
-      { role: 'zoom' },
-      { type: 'separator' },
-      { role: 'front' }
-    ];
-  }
-
   return Menu.buildFromTemplate(template);
 };
