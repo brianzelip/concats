@@ -3,7 +3,7 @@ import fs from 'fs';
 import { dialog } from 'electron';
 
 export default function(BrowserWindow) {
-  return {
+  const fileMenu = {
     label: 'File',
     submenu: [
       {
@@ -35,9 +35,16 @@ export default function(BrowserWindow) {
           BrowserWindow.webContents.send('reset-app');
         },
         accelerator: 'CmdOrCtrl+R'
-      },
-      { type: 'separator' },
-      { role: 'quit', accelerator: 'CmdOrCtrl+Q' }
+      }
     ]
   };
+
+  if (process.platform !== 'darwin') {
+    fileMenu.push(
+      { type: 'separator' },
+      { role: 'quit', accelerator: 'Ctrl+Q' }
+    );
+  }
+
+  return fileMenu;
 }
