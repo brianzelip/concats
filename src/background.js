@@ -18,9 +18,17 @@ let win;
 protocol.registerStandardSchemes(['app'], { secure: true });
 function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow();
+  win = new BrowserWindow({
+    width: 1000,
+    height: 800,
+    show: false
+  });
 
-  win.maximize();
+  // show window gracefully
+  // via https://electronjs.org/docs/api/browser-window#showing-window-gracefully
+  win.once('ready-to-show', () => {
+    win.show();
+  });
 
   if (isDevelopment || process.env.IS_TEST) {
     // Load the url of the dev server if in development mode
