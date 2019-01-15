@@ -20,7 +20,7 @@ export default function(BrowserWindow) {
               if (filePaths != undefined) {
                 fs.readFile(filePaths[0], 'utf-8', function(err, fileAsString) {
                   if (err) {
-                    console.log(err);
+                    throw err;
                   }
                   BrowserWindow.webContents.send('file-input', fileAsString);
                 });
