@@ -40,7 +40,7 @@ export default function(BrowserWindow) {
   };
 
   if (process.platform !== 'darwin') {
-    fileMenu.push(
+    fileMenu.submenu.push(
       { type: 'separator' },
       { role: 'quit', accelerator: 'Ctrl+Q' }
     );
