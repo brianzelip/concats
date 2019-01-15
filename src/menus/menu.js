@@ -17,6 +17,7 @@ export default BrowserWindow => {
   };
 
   const template = [
+    ...(process.platform === 'darwin' ? [darwinMenu(showAbout)] : []),
     fileMenu(BrowserWindow),
     viewMenu(),
     windowMenu(),
@@ -24,8 +25,6 @@ export default BrowserWindow => {
   ];
 
   if (process.platform === 'darwin') {
-    template.unshift(darwinMenu(showAbout));
-
     // Window menu
     template[3].submenu = [
       { role: 'close' },
