@@ -2,10 +2,10 @@ import { app, Menu, dialog } from 'electron';
 
 import { homepage } from '../../package.json';
 
-import fileMenu from './file';
-import viewMenu from './view';
-import infoMenu from './info';
-import darwinMenu from './darwin';
+import fileMenu from './_file';
+import viewMenu from './_view';
+import infoMenu from './_info';
+import darwinMenu from './_darwin';
 
 export default BrowserWindow => {
   const currentYear = new Date().getFullYear();
