@@ -1,7 +1,5 @@
 import { app, Menu, dialog } from 'electron';
 
-import { homepage } from '../../package.json';
-
 import fileMenu from './_file';
 import viewMenu from './_view';
 import infoMenu from './_info';
@@ -15,7 +13,7 @@ export default BrowserWindow => {
       type: 'info',
       title: `About ${app.getName()}`,
       message: `${app.getName()} v${app.getVersion()}`,
-      detail: `Source code available at\n${homepage}\n\nCopyright © 2018-${currentYear} Brian Zelip`,
+      detail: `See Info menu for source code\n\nCopyright © 2018-${currentYear} Brian Zelip`,
       buttons: []
     });
   };
