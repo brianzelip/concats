@@ -13,7 +13,7 @@ export default BrowserWindow => {
       type: 'info',
       title: `About ${app.getName()}`,
       message: `${app.getName()} v${app.getVersion()}`,
-      detail: `See Info menu for source code\n\nCopyright © 2018-${currentYear} Brian Zelip`,
+      detail: `See the Info menu for source code.\n\nCopyright © 2018-${currentYear} Brian Zelip`,
       buttons: []
     });
   };
