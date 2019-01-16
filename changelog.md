@@ -53,3 +53,13 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 
 - removes footer
 - adds completed metadata fields in package.json
+
+## `menus` feature branch
+
+- implements native OS menu system, including:
+  - darwin menu if on darwin build
+  - file
+  - view
+  - info - including an external link to app source repo and About concats pop up dialog on windows builds
+- new app icon
+- I read through the source code for Hyper by Zeit, and used their module approach to the menu organization
