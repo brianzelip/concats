@@ -48,3 +48,8 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 - reconsider metadata from header and footer, make it all available via OS native menus, NOT via app UI
 - expand the drop zone, and the click area for user to select input file
 - make app ui more minimal centered around app workflow
+
+## `app-metdata` feature branch, starting at v1.7.0
+
+- removes footer
+- adds completed metadata fields in package.json
