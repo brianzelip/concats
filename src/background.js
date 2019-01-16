@@ -1,10 +1,13 @@
 'use strict';
 
-import { app, protocol, BrowserWindow } from 'electron';
+import { app, protocol, BrowserWindow, Menu } from 'electron';
 import {
   createProtocol,
   installVueDevtools
 } from 'vue-cli-plugin-electron-builder/lib';
+
+import appMenu from './menus/menu.js';
+
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -15,7 +18,17 @@ let win;
 protocol.registerStandardSchemes(['app'], { secure: true });
 function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow({ width: 800, height: 600 });
+  win = new BrowserWindow({
+    width: 1000,
+    height: 800,
+    show: false
+  });
+
+  // show window gracefully
+  // via https://electronjs.org/docs/api/browser-window#showing-window-gracefully
+  win.once('ready-to-show', () => {
+    win.show();
+  });
 
   if (isDevelopment || process.env.IS_TEST) {
     // Load the url of the dev server if in development mode
@@ -58,6 +71,7 @@ app.on('ready', async () => {
     await installVueDevtools();
   }
   createWindow();
+  Menu.setApplicationMenu(appMenu(win));
 });
 
 // Exit cleanly on request from parent process in development mode.

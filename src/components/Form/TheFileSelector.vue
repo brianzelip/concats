@@ -43,10 +43,11 @@ export default {
           properties: ["openFile"]
         },
         filePaths => {
-          if (filePaths[0] === undefined) return;
-          fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
-            vm.$emit("file-input", fileAsString);
-          });
+          if (filePaths != undefined) {
+            fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
+              vm.$emit("file-input", fileAsString);
+            });
+          }
         }
       );
     },
