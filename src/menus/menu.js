@@ -13,7 +13,7 @@ export default BrowserWindow => {
       type: 'info',
       title: `About ${app.getName()}`,
       message: `${app.getName()} v${app.getVersion()}`,
-      detail: `See the Info menu for source code.\n\nCopyright © 2018-${currentYear} Brian Zelip`,
+      detail: `Made with Electron.js and Vue.js.\nSee the Info menu for a link to the source code.\n\nCopyright © 2018-${currentYear} Brian Zelip`,
       buttons: []
     });
   };
