@@ -8,9 +8,9 @@
 
     <TheForm
       class="form"
-      v-on:file-has-been-processed="onHeadersInput = true"
+      v-on:file-has-been-processed="stepOneComplete"
       v-on:reset="reset"
-      v-on:user-selected-headers-submitted="onDownload = true"
+      v-on:user-selected-headers-submitted="stepTwoComplete"
     ></TheForm>
   </main>
 </template>
