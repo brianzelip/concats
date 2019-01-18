@@ -18,6 +18,12 @@
       ></PlusSvg>
       <p>or drag and drop a file</p>
     </div>
+    <transition name="fade">
+      <TheFileSelectorModal
+        v-if="showModal"
+        v-on:hide-modal="showModal = false"
+      ></TheFileSelectorModal>
+    </transition>
   </section>
 </template>
 
@@ -31,7 +37,8 @@ import TheFileSelectorModal from "./TheFileSelectorModal.vue";
 export default {
   data() {
     return {
-      isactive: false
+      isactive: false,
+      showModal: false
     };
   },
   methods: {
@@ -57,6 +64,7 @@ export default {
       const re = /(\.[tc]sv)$/gi;
 
       if (fileName.search(re) === -1) {
+        this.showModal = true;
         return;
       }
 
@@ -108,5 +116,13 @@ label {
 .dropzone.isactive {
   border-color: rgba(0, 0, 0, 1);
   transition: border-color 0.3s;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
