@@ -26,6 +26,7 @@ const fs = require("fs");
 const { dialog } = require("electron").remote;
 
 import PlusSvg from "../../assets/plus.svg";
+import TheFileSelectorModal from "./TheFileSelectorModal.vue";
 
 export default {
   data() {
@@ -64,7 +65,8 @@ export default {
     }
   },
   components: {
-    PlusSvg
+    PlusSvg,
+    TheFileSelectorModal
   }
 };
 </script>
@@ -73,6 +75,7 @@ export default {
 section {
   display: flex;
   flex-grow: 1;
+  position: relative;
 }
 label {
   margin-right: 1rem;
@@ -88,6 +91,7 @@ label {
   border-width: 4px;
   border-style: dashed;
   border-color: rgba(0, 0, 0, 0.333);
+  border-radius: 4px;
   transition: border-color 0.3s;
 }
 .add {
