@@ -67,3 +67,9 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 ## `progress-bar-ui` feature branch, starting at v1.8.4
 
 - adds step number underneath each step icon in progress bar via ::after psuedo element, opacity, and props on div wrapper around each svg
+
+## `input-file-type` feature branch, starting at v1.9.1
+
+- shows temporary modal when invalid file types are dropped onto TheFileSelector dropzone
+- adds helpful text about valid file types to TheFileSelector
+- here's [the !SO answer](https://stackoverflow.com/a/48481398/2145103) that helped me achieve the temporary modal solution by using the mounted() hook in the modal component to implement the `setTimeout()`
