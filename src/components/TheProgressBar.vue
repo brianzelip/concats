@@ -1,25 +1,40 @@
 <template>
   <section id="progress">
-    <FilePlusSvg
-      :class="{iscomplete: onFileInput }"
-      class="stage"
-    ></FilePlusSvg>
+    <div
+      :class="{iscurrent: onStep1}"
+      class="one"
+    >
+      <FilePlusSvg
+        :class="{iscomplete: onFileInput }"
+        class="stage"
+      ></FilePlusSvg>
+    </div>
     <AngleRightSvg
       :class="{iscomplete: onHeadersInput }"
       class="arrow"
     ></AngleRightSvg>
-    <TasksSvg
-      :class="{iscomplete: onHeadersInput }"
-      class="stage"
-    ></TasksSvg>
+    <div
+      :class="{iscurrent: onStep2}"
+      class="two"
+    >
+      <TasksSvg
+        :class="{iscomplete: onHeadersInput }"
+        class="stage"
+      ></TasksSvg>
+    </div>
     <AngleRightSvg
       :class="{iscomplete: onDownload }"
       class="arrow"
     ></AngleRightSvg>
-    <FileDownloadSvg
-      :class="{iscomplete: onDownload }"
-      class="stage"
-    ></FileDownloadSvg>
+    <div
+      :class="{iscurrent: onStep3}"
+      class="three"
+    >
+      <FileDownloadSvg
+        :class="{iscomplete: onDownload }"
+        class="stage"
+      ></FileDownloadSvg>
+    </div>
   </section>
 </template>
 
@@ -36,6 +51,17 @@ export default {
     TasksSvg,
     FileDownloadSvg,
     AngleRightSvg
+  },
+  computed: {
+    onStep1() {
+      return this.onFileInput;
+    },
+    onStep2() {
+      return this.onHeadersInput;
+    },
+    onStep3() {
+      return this.onDownload;
+    }
   }
 };
 </script>
@@ -48,6 +74,10 @@ export default {
   margin: 1rem;
   color: black;
 }
+div {
+  width: 35px;
+  position: relative;
+}
 .stage,
 .arrow {
   fill: black;
@@ -56,6 +86,29 @@ export default {
 .stage {
   width: 35px;
   height: 35px;
+}
+div::after {
+  position: absolute;
+  bottom: -13px;
+  left: 0;
+  display: inline-block;
+  width: 35px;
+  font-size: 0.75rem;
+  text-align: center;
+  opacity: 0;
+}
+div.iscurrent::after {
+  opacity: 1;
+  transition: opacity 1.25s;
+}
+div.one::after {
+  content: "1";
+}
+div.two::after {
+  content: "2";
+}
+div.three::after {
+  content: "3";
 }
 .arrow {
   width: 20px;

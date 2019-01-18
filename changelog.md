@@ -54,7 +54,7 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 - removes footer
 - adds completed metadata fields in package.json
 
-## `menus` feature branch
+## `menus` feature branch, starting at v1.7.4
 
 - implements native OS menu system, including:
   - darwin menu if on darwin build
@@ -63,3 +63,7 @@ Design the app's user steps so that, instead of scrolling down the page as steps
   - info - including an external link to app source repo and About concats pop up dialog on windows builds
 - new app icon
 - I read through the source code for Hyper by Zeit, and used their module approach to the menu organization
+
+## `progress-bar-ui` feature branch, starting at v1.8.4
+
+- adds step number underneath each step icon in progress bar via ::after psuedo element, opacity, and props on div wrapper around each svg
