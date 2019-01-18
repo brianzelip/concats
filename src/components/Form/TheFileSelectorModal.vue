@@ -1,8 +1,11 @@
 <template>
-  <aside>
+  <aside
+    @dragover.prevent
+    @drop.prevent
+  >
     <div>
       <InfoCircleSVG class="icon"></InfoCircleSVG>
-      <span>Please drag and drop a csv/tsv file!</span>
+      <span>Please select a csv/tsv file!</span>
     </div>
   </aside>
 </template>
@@ -13,10 +16,14 @@ import InfoCircleSVG from "../../assets/info-circle.svg";
 export default {
   components: {
     InfoCircleSVG
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$emit("hide-modal");
+    }, 1500);
   }
 };
 </script>
-
 
 <style scoped>
 aside {
@@ -28,7 +35,7 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(0, 0, 0, 0.111);
+  background: rgba(0, 0, 0, 0.222);
 }
 div {
   display: flex;
