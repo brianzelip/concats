@@ -1,6 +1,9 @@
 <template>
   <section id="progress">
-    <div class="one">
+    <div
+      :class="{iscurrent: onStep1}"
+      class="one"
+    >
       <FilePlusSvg
         :class="{iscomplete: onFileInput }"
         class="stage"
@@ -10,7 +13,10 @@
       :class="{iscomplete: onHeadersInput }"
       class="arrow"
     ></AngleRightSvg>
-    <div class="two">
+    <div
+      :class="{iscurrent: onStep2}"
+      class="two"
+    >
       <TasksSvg
         :class="{iscomplete: onHeadersInput }"
         class="stage"
@@ -20,7 +26,10 @@
       :class="{iscomplete: onDownload }"
       class="arrow"
     ></AngleRightSvg>
-    <div class="three">
+    <div
+      :class="{iscurrent: onStep3}"
+      class="three"
+    >
       <FileDownloadSvg
         :class="{iscomplete: onDownload }"
         class="stage"
@@ -42,6 +51,17 @@ export default {
     TasksSvg,
     FileDownloadSvg,
     AngleRightSvg
+  },
+  computed: {
+    onStep1() {
+      return this.onFileInput;
+    },
+    onStep2() {
+      return this.onHeadersInput;
+    },
+    onStep3() {
+      return this.onDownload;
+    }
   }
 };
 </script>
@@ -76,6 +96,10 @@ div::after {
   font-size: 0.75rem;
   text-align: center;
   opacity: 0;
+}
+div.iscurrent::after {
+  opacity: 1;
+  transition: opacity 1.25s;
 }
 div.one::after {
   content: "1";
