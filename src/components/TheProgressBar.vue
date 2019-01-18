@@ -68,13 +68,14 @@ div {
   height: 35px;
 }
 div::after {
-  display: inline-block;
   position: absolute;
   bottom: -13px;
   left: 0;
+  display: inline-block;
   width: 35px;
   font-size: 0.75rem;
   text-align: center;
+  opacity: 0;
 }
 div.one::after {
   content: "1";
