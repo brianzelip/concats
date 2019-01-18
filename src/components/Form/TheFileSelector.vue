@@ -11,7 +11,7 @@
       @mouseleave="isactive = false"
       class="dropzone"
     >
-      <p>click to select a file</p>
+      <p>click to select a csv/tsv file</p>
       <PlusSvg
         :class="{ isactive }"
         class="add"
