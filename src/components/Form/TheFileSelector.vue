@@ -11,13 +11,19 @@
       @mouseleave="isactive = false"
       class="dropzone"
     >
-      <p>click to select a file</p>
+      <p>click to select a csv/tsv file</p>
       <PlusSvg
         :class="{ isactive }"
         class="add"
       ></PlusSvg>
       <p>or drag and drop a file</p>
     </div>
+    <transition name="fade">
+      <TheFileSelectorModal
+        v-if="showModal"
+        v-on:hide-modal="showModal = false"
+      ></TheFileSelectorModal>
+    </transition>
   </section>
 </template>
 
@@ -26,11 +32,13 @@ const fs = require("fs");
 const { dialog } = require("electron").remote;
 
 import PlusSvg from "../../assets/plus.svg";
+import TheFileSelectorModal from "./TheFileSelectorModal.vue";
 
 export default {
   data() {
     return {
-      isactive: false
+      isactive: false,
+      showModal: false
     };
   },
   methods: {
@@ -56,6 +64,7 @@ export default {
       const re = /(\.[tc]sv)$/gi;
 
       if (fileName.search(re) === -1) {
+        this.showModal = true;
         return;
       }
 
@@ -64,7 +73,8 @@ export default {
     }
   },
   components: {
-    PlusSvg
+    PlusSvg,
+    TheFileSelectorModal
   }
 };
 </script>
@@ -73,6 +83,7 @@ export default {
 section {
   display: flex;
   flex-grow: 1;
+  position: relative;
 }
 label {
   margin-right: 1rem;
@@ -88,6 +99,7 @@ label {
   border-width: 4px;
   border-style: dashed;
   border-color: rgba(0, 0, 0, 0.333);
+  border-radius: 4px;
   transition: border-color 0.3s;
 }
 .add {
@@ -104,5 +116,13 @@ label {
 .dropzone.isactive {
   border-color: rgba(0, 0, 0, 1);
   transition: border-color 0.3s;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
