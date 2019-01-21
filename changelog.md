@@ -73,3 +73,8 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 - shows temporary modal when invalid file types are dropped onto TheFileSelector dropzone
 - adds helpful text about valid file types to TheFileSelector
 - here's [the !SO answer](https://stackoverflow.com/a/48481398/2145103) that helped me achieve the temporary modal solution by using the mounted() hook in the modal component to implement the `setTimeout()`
+
+## `progress-svg-opacity` feature branch, starting at v1.10.0
+
+- change the opacity transition of the angle arrows in the progress bar to point the user to the next step
+- gets rid of all `.iscomplete` classes in favor of `.iscurrent`
