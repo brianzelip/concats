@@ -5,12 +5,12 @@
       class="one"
     >
       <FilePlusSvg
-        :class="{iscomplete: onFileInput }"
+        :class="{iscurrent: onFileInput }"
         class="stage"
       ></FilePlusSvg>
     </div>
     <AngleRightSvg
-      :class="{iscomplete: onHeadersInput }"
+      :class="{iscurrent: onStep1 }"
       class="arrow"
     ></AngleRightSvg>
     <div
@@ -18,12 +18,12 @@
       class="two"
     >
       <TasksSvg
-        :class="{iscomplete: onHeadersInput }"
+        :class="{iscurrent: onHeadersInput }"
         class="stage"
       ></TasksSvg>
     </div>
     <AngleRightSvg
-      :class="{iscomplete: onDownload }"
+      :class="{iscurrent: onStep2 }"
       class="arrow"
     ></AngleRightSvg>
     <div
@@ -31,7 +31,7 @@
       class="three"
     >
       <FileDownloadSvg
-        :class="{iscomplete: onDownload }"
+        :class="{iscurrent: onDownload }"
         class="stage"
       ></FileDownloadSvg>
     </div>
@@ -115,8 +115,8 @@ div.three::after {
   height: 20px;
   margin: 0 1rem;
 }
-.stage.iscomplete,
-.arrow.iscomplete {
+.stage.iscurrent,
+.arrow.iscurrent {
   opacity: 1;
   transition: opacity 1.25s;
 }
