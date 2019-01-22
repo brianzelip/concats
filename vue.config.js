@@ -1,7 +1,7 @@
-// this file's contents via
-// https://cli.vuejs.org/guide/webpack.html#replacing-loaders-of-a-rule
 module.exports = {
   chainWebpack: config => {
+    // svgRule code via
+    // https://cli.vuejs.org/guide/webpack.html#replacing-loaders-of-a-rule
     const svgRule = config.module.rule('svg');
 
     // clear all existing loaders.
@@ -11,5 +11,12 @@ module.exports = {
 
     // add replacement loader(s)
     svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+  },
+  pluginOptions: {
+    electronBuilder: {
+      builderOptions: {
+        // options placed here will be merged with default configuration and passed to electron-builder
+      }
+    }
   }
 };
