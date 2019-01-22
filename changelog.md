@@ -78,3 +78,8 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 
 - change the opacity transition of the angle arrows in the progress bar to point the user to the next step
 - gets rid of all `.iscomplete` classes in favor of `.iscurrent`
+
+## `maintenance` feature branch, starting at v1.11.0
+
+- refactor src/\* into main/ and renderer/
+- add README to build/
