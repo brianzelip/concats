@@ -1,6 +1,6 @@
 import { app, shell } from 'electron';
 
-import { homepage } from '../../package.json';
+import { homepage } from '../../../package.json';
 
 export default showAbout => {
   const submenu = [
