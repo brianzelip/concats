@@ -69,6 +69,8 @@ export default {
         : console.log(this.errorMsg(fileName));
     },
     fileIsValid(file) {
+      // analyze file extension approach via https://stackoverflow.com/a/22864057/2145103
+      
       function hasExtension(file) {
         return (
           file
