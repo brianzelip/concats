@@ -12,8 +12,7 @@ export default function(BrowserWindow) {
         click() {
           dialog.showOpenDialog(
             {
-              title: 'Select a CSV or TSV file',
-              filters: [{ name: 'csv or tsv', extensions: ['csv', 'tsv'] }],
+              title: 'Select a data file',
               properties: ['openFile']
             },
             filePaths => {
