@@ -44,6 +44,24 @@ export default {
   methods: {
     handleFileSelect() {
       const vm = this;
+      function hasExtension(fileName) {
+        return (
+          fileName
+            .split("/")
+            .pop()
+            .split(".").length > 1
+        );
+      }
+      function getExtension(fileName) {
+        return fileName
+          .split("/")
+          .pop()
+          .split(".")
+          .pop();
+      }
+      function isExtensionWeLike(ext) {
+        return ext === "csv" || ext === "tsv";
+      }
       dialog.showOpenDialog(
         {
           title: "Select a data file",
@@ -51,9 +69,17 @@ export default {
         },
         filePaths => {
           if (filePaths != undefined) {
-            fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
-              vm.$emit("file-input", fileAsString);
-            });
+            (hasExtension(filePaths[0]) &&
+              isExtensionWeLike(getExtension(filePaths[0]))) ||
+            !hasExtension(filePaths[0])
+              ? fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
+                  vm.$emit("file-input", fileAsString);
+                })
+              : console.log(
+                  `File selected had wrong extension (${
+                    filePaths[0]
+                  }); please select a csv/tsv or data file with no extension.`
+                );
           }
         }
       );
