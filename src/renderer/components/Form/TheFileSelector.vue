@@ -44,24 +44,7 @@ export default {
   methods: {
     handleFileSelect() {
       const vm = this;
-      function hasExtension(fileName) {
-        return (
-          fileName
-            .split("/")
-            .pop()
-            .split(".").length > 1
-        );
-      }
-      function getExtension(fileName) {
-        return fileName
-          .split("/")
-          .pop()
-          .split(".")
-          .pop();
-      }
-      function isExtensionWeLike(ext) {
-        return ext === "csv" || ext === "tsv";
-      }
+
       dialog.showOpenDialog(
         {
           title: "Select a data file",
