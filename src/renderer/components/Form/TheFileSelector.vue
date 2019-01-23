@@ -56,26 +56,17 @@ export default {
               ? fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
                   vm.$emit("file-input", fileAsString);
                 })
-              : console.log(
-                  `File selected had wrong extension (${
-                    filePaths[0]
-                  }); please select a csv/tsv or data file with no extension.`
-                );
+              : console.log(vm.errorMsg(filePaths[0]));
           }
         }
       );
     },
     handleFileDrop(e) {
       const fileName = e.dataTransfer.files[0].name;
-      const re = /(\.[tc]sv)$/gi;
 
-      if (fileName.search(re) === -1) {
-        this.showModal = true;
-        return;
-      }
-
-      const fileAsFileObj = e.dataTransfer.files[0];
-      this.$emit("file-input", fileAsFileObj);
+      this.fileIsValid(fileName)
+        ? this.$emit("file-input", e.dataTransfer.files[0])
+        : console.log(this.errorMsg(fileName));
     },
     fileIsValid(file) {
       function hasExtension(file) {
@@ -100,6 +91,9 @@ export default {
         !hasExtension(file)
         ? true
         : false;
+    },
+    errorMsg(fileName) {
+      return `File selected had wrong extension (${fileName}); please select a csv/tsv file or a data file with no extension.`;
     }
   },
   components: {
