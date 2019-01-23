@@ -69,9 +69,7 @@ export default {
         },
         filePaths => {
           if (filePaths != undefined) {
-            (hasExtension(filePaths[0]) &&
-              isExtensionWeLike(getExtension(filePaths[0]))) ||
-            !hasExtension(filePaths[0])
+            vm.fileIsValid(filePaths[0])
               ? fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
                   vm.$emit("file-input", fileAsString);
                 })
@@ -95,6 +93,30 @@ export default {
 
       const fileAsFileObj = e.dataTransfer.files[0];
       this.$emit("file-input", fileAsFileObj);
+    },
+    fileIsValid(file) {
+      function hasExtension(file) {
+        return (
+          file
+            .split("/")
+            .pop()
+            .split(".").length > 1
+        );
+      }
+      function getExtension(file) {
+        return file
+          .split("/")
+          .pop()
+          .split(".")
+          .pop();
+      }
+      function isExtensionWeLike(ext) {
+        return ext === "csv" || ext === "tsv";
+      }
+      return (hasExtension(file) && isExtensionWeLike(getExtension(file))) ||
+        !hasExtension(file)
+        ? true
+        : false;
     }
   },
   components: {
