@@ -31,7 +31,7 @@
 const fs = require("fs");
 const { dialog } = require("electron").remote;
 
-import { options, rendererCB } from "../../../shared/fileHelper.js";
+import { fCheck, openDialogOptions } from "../../../shared/fileHelper.js";
 
 import PlusSvg from "../../assets/plus.svg";
 import TheFileSelectorModal from "./TheFileSelectorModal.vue";
@@ -46,21 +46,19 @@ export default {
   methods: {
     handleFileSelect() {
       const vm = this;
-
-      dialog.showOpenDialog(options, filePaths => {
+      dialog.showOpenDialog(openDialogOptions, filePaths => {
         if (filePaths != undefined) {
-          vm.fileIsValid(filePaths[0])
+          fCheck.fileIsValid(filePaths[0])
             ? fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
                 vm.$emit("file-input", fileAsString);
               })
-            : console.log(vm.errorMsg(filePaths[0]));
+            : console.log(fCheck.errorMsg(filePaths[0]));
         }
       });
     },
     handleFileDrop(e) {
       const fileName = e.dataTransfer.files[0].name;
-
-      this.fileIsValid(fileName)
+      fCheck.fileIsValid(fileName)
         ? this.$emit("file-input", e.dataTransfer.files[0])
         : console.log(this.errorMsg(fileName));
     },
