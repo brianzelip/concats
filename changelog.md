@@ -83,3 +83,7 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 
 - refactor src/\* into main/ and renderer/
 - add README to build/
+
+## `allow-plain-text` feature branch, starting at v1.12.0
+
+- allow user to input any plain text file, not just w/ '.tsv' or '.csv' file extensions

@@ -31,6 +31,8 @@
 const fs = require("fs");
 const { dialog } = require("electron").remote;
 
+import { fCheck, openDialogOptions } from "../../../shared/fileHelper.js";
+
 import PlusSvg from "../../assets/plus.svg";
 import TheFileSelectorModal from "./TheFileSelectorModal.vue";
 
@@ -44,32 +46,21 @@ export default {
   methods: {
     handleFileSelect() {
       const vm = this;
-      dialog.showOpenDialog(
-        {
-          title: "Select a CSV or TSV file",
-          filters: [{ name: "csv or tsv", extensions: ["csv", "tsv"] }],
-          properties: ["openFile"]
-        },
-        filePaths => {
-          if (filePaths != undefined) {
-            fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
-              vm.$emit("file-input", fileAsString);
-            });
-          }
+      dialog.showOpenDialog(openDialogOptions, filePaths => {
+        if (filePaths != undefined) {
+          fCheck.fileIsValid(filePaths[0])
+            ? fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
+                vm.$emit("file-input", fileAsString);
+              })
+            : console.log(fCheck.errorMsg(filePaths[0]));
         }
-      );
+      });
     },
     handleFileDrop(e) {
       const fileName = e.dataTransfer.files[0].name;
-      const re = /(\.[tc]sv)$/gi;
-
-      if (fileName.search(re) === -1) {
-        this.showModal = true;
-        return;
-      }
-
-      const fileAsFileObj = e.dataTransfer.files[0];
-      this.$emit("file-input", fileAsFileObj);
+      fCheck.fileIsValid(fileName)
+        ? this.$emit("file-input", e.dataTransfer.files[0])
+        : console.log(fCheck.errorMsg(fileName));
     }
   },
   components: {

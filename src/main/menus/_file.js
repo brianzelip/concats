@@ -2,6 +2,8 @@ import fs from 'fs';
 
 import { dialog } from 'electron';
 
+import { fCheck, openDialogOptions } from '../../shared/fileHelper.js';
+
 export default function(BrowserWindow) {
   const fileMenu = {
     label: 'File',
@@ -10,23 +12,21 @@ export default function(BrowserWindow) {
         label: 'Open',
         accelerator: 'CmdOrCtrl+O',
         click() {
-          dialog.showOpenDialog(
-            {
-              title: 'Select a CSV or TSV file',
-              filters: [{ name: 'csv or tsv', extensions: ['csv', 'tsv'] }],
-              properties: ['openFile']
-            },
-            filePaths => {
-              if (filePaths != undefined) {
-                fs.readFile(filePaths[0], 'utf-8', function(err, fileAsString) {
-                  if (err) {
-                    throw err;
-                  }
-                  BrowserWindow.webContents.send('file-input', fileAsString);
-                });
-              }
+          dialog.showOpenDialog(openDialogOptions, filePaths => {
+            if (filePaths != undefined) {
+              fCheck.fileIsValid(filePaths[0])
+                ? fs.readFile(filePaths[0], 'utf-8', function(
+                    err,
+                    fileAsString
+                  ) {
+                    if (err) {
+                      throw err;
+                    }
+                    BrowserWindow.webContents.send('file-input', fileAsString);
+                  })
+                : console.log(fCheck.errorMsg(filePaths[0]));
             }
-          );
+          });
         }
       },
       {
