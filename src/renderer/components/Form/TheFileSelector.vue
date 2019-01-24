@@ -31,7 +31,7 @@
 const fs = require("fs");
 const { dialog } = require("electron").remote;
 
-import { options, rendererCB } from "../../../shared/openDialog.js";
+import { options, rendererCB } from "../../../shared/fileHelper.js";
 
 import PlusSvg from "../../assets/plus.svg";
 import TheFileSelectorModal from "./TheFileSelectorModal.vue";
