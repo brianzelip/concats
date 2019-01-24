@@ -56,5 +56,5 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "main": "src/main/background.js"
+  "main": "background.js"
 }
