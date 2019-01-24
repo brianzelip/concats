@@ -31,6 +31,8 @@
 const fs = require("fs");
 const { dialog } = require("electron").remote;
 
+import { options, rendererCB } from "../../../shared/openDialog.js";
+
 import PlusSvg from "../../assets/plus.svg";
 import TheFileSelectorModal from "./TheFileSelectorModal.vue";
 
@@ -45,21 +47,15 @@ export default {
     handleFileSelect() {
       const vm = this;
 
-      dialog.showOpenDialog(
-        {
-          title: "Select a data file",
-          properties: ["openFile"]
-        },
-        filePaths => {
-          if (filePaths != undefined) {
-            vm.fileIsValid(filePaths[0])
-              ? fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
-                  vm.$emit("file-input", fileAsString);
-                })
-              : console.log(vm.errorMsg(filePaths[0]));
-          }
+      dialog.showOpenDialog(options, filePaths => {
+        if (filePaths != undefined) {
+          vm.fileIsValid(filePaths[0])
+            ? fs.readFile(filePaths[0], "utf-8", function(err, fileAsString) {
+                vm.$emit("file-input", fileAsString);
+              })
+            : console.log(vm.errorMsg(filePaths[0]));
         }
-      );
+      });
     },
     handleFileDrop(e) {
       const fileName = e.dataTransfer.files[0].name;
@@ -70,7 +66,7 @@ export default {
     },
     fileIsValid(file) {
       // analyze file extension approach via https://stackoverflow.com/a/22864057/2145103
-      
+
       function hasExtension(file) {
         return (
           file
