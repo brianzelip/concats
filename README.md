@@ -6,7 +6,7 @@ Made with:
 
 - [electron](https://github.com/electron/electron)
 - [vue](https://github.com/vuejs/vue)
-- [electron-vue](https://github.com/SimulatedGREG/electron-vue)
+- [vue-cli-plugin-electron-builder](https://github.com/nklayman/vue-cli-plugin-electron-builder)
 - [electron-builder](https://www.electron.build/)
 
 ## User workflow:
