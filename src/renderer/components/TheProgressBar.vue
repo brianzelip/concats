@@ -95,7 +95,7 @@ div::after {
   width: 35px;
   font-size: 0.75rem;
   text-align: center;
-  opacity: 0;
+  opacity: 0.333;
 }
 div.iscurrent::after {
   opacity: 1;
