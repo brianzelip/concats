@@ -2,9 +2,11 @@
 
 Cross platform desktop app for outputting a single-column csv file of rows of concatenated fields from an input delimiter-separated values file.
 
+Accepts .csv, .tsv, and extension-less files (_data.csv_, _data.tsv_, _data_) as input.
+
 ![demo](demo.gif)
 
-## Made with:
+## Made with
 
 - [electron](https://github.com/electron/electron)
 - [vue](https://github.com/vuejs/vue)
