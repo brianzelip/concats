@@ -1,8 +1,8 @@
 # concats
 
-![demo](demo.gif)
+Cross platform desktop app for outputting a single-column csv file of rows of concatenated fields from an input csv file.
 
-Desktop app for outputting a single-column csv file of rows of concatenated fields from an input csv file.
+![demo](demo.gif)
 
 ## Made with:
 
