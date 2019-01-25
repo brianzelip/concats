@@ -1,5 +1,7 @@
 # concats
 
+![demo](demo.gif)
+
 Desktop app for outputting a single-column csv file of rows of concatenated fields from an input csv file.
 
 Made with:
