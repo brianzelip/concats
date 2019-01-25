@@ -88,3 +88,9 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 
 - allow user to input an extension-less file or a csv/tsv file
 - introduces a directory of shared modules between `src/main/` and `src/renderer/`
+
+## `progress-bar-update` feature branch, starting at v1.13.1
+
+- shows progress bar step numbers by default, and only the current step in bold
+- makes LICENSE current
+- cleans up readme
