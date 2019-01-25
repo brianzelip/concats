@@ -86,4 +86,5 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 
 ## `allow-plain-text` feature branch, starting at v1.12.0
 
-- allow user to input any plain text file, not just w/ '.tsv' or '.csv' file extensions
+- allow user to input an extension-less file or a csv/tsv file
+- introduces a directory of shared modules between `src/main/` and `src/renderer/`
