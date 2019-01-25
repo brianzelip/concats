@@ -94,3 +94,9 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 - shows progress bar step numbers by default, and only the current step in bold
 - makes LICENSE current
 - cleans up readme
+
+## `demo` feature branch, starting at v1.13.5
+
+- create animated gif from screenshot video of using concats
+- updates README with demo
+- cleans up README to close some issues
