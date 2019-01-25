@@ -1,49 +1,41 @@
 # concats
 
-Desktop app for outputting a single-column csv file of rows of concatenated fields from an input csv file.
+Cross platform desktop app for outputting a single-column csv file of rows of concatenated fields from an input csv file.
 
-Made with:
+![demo](demo.gif)
+
+## Made with:
 
 - [electron](https://github.com/electron/electron)
 - [vue](https://github.com/vuejs/vue)
 - [vue-cli-plugin-electron-builder](https://github.com/nklayman/vue-cli-plugin-electron-builder)
-- [electron-builder](https://www.electron.build/)
 
-## User workflow:
+## Development
 
-1. Select file
-2. Select headers
-3. Output
-4. Reset
+To run concats locally (_requires [Node.js](https://nodejs.org) v8.9 or above_):
 
-## Components
+```bash
 
-- Input
-  - FileSelector
-  - HeadersSelector
-  - Submit
-  - Reset
-- Output
-  - Output
+git clone git@github.com/brianzelip/concats.git
 
-## Menu
+cd concats
 
-what fundamental app behaviors should be available in the menus?
+npm install
 
-- load file
-- reset app
-- view dev tools
-- get info about the app
+npm run electron:serve
 
-The following are behavior of secondary importance:
+```
 
-- view full screen
-- maximize
-- minimize
-- close
-- all the apple-specific stuff like, hide, hide others, etc.
--
+## Build binaries
 
-There could be:
+To build the executable binary for `$PLATFORM`, you must have [Node.js](https://nodejs.org) v8.9 or above on `$PLATFORM`, and run:
 
-- preferences, whereby the user sets default input and output directories
+```bash
+git clone git@github.com/brianzelip/concats.git
+
+cd concats
+
+npm install
+
+npm run electron:build
+```
