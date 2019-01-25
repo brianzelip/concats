@@ -1,6 +1,6 @@
 {
   "name": "concats",
-  "description": "Output a single-column csv file containing rows of concatenated fields from an input csv file. Desktop app built using Electron.js and Vue.js.",
+  "description": "Output a single-column csv file containing rows of concatenated fields from an input delimiter-separated values file. Desktop app built using Electron.js and Vue.js.",
   "version": "1.13.6",
   "private": false,
   "author": {

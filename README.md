@@ -1,6 +1,6 @@
 # concats
 
-Cross platform desktop app for outputting a single-column csv file of rows of concatenated fields from an input csv file.
+Cross platform desktop app for outputting a single-column csv file of rows of concatenated fields from an input delimiter-separated values file.
 
 ![demo](demo.gif)
 
