@@ -31,7 +31,8 @@ const fCheck = {
 
 const openDialogOptions = {
   title: 'Select a data file',
-  properties: ['openFile']
+  properties: ['openFile'],
+  filters: [{ name: "Data Files (*.CSV, *.TSV)", extensions: ["csv", "tsv"] }]
 };
 
 export { fCheck, openDialogOptions };
