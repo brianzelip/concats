@@ -100,3 +100,13 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 - create animated gif from screenshot video of using concats
 - updates README with demo
 - cleans up README to close some issues
+
+## [1.13.11] - 2019-05-30
+
+- starting point: v1.13.10
+- ending point: v1.13.11
+- branch name: security
+
+- steps:
+  - run `npm audit fix`
+  - install 1/2 peer dependencies (see 26ec9498d4 commit message)
