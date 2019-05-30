@@ -6,6 +6,7 @@
   "author": {
     "name": "Brian Zelip"
   },
+  "license": "MIT",
   "homepage": "https://github.com/brianzelip/concats",
   "repository": "https://github.com/brianzelip/concats",
   "scripts": {
