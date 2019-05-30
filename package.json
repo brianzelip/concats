@@ -17,6 +17,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "ajv": "^6.10.0",
     "csvtojson": "^2.0.8",
     "vue": "^2.5.21"
   },
