@@ -110,3 +110,13 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 - steps:
   - run `npm audit fix`
   - install 1/2 peer dependencies (see 26ec9498d4 commit message)
+
+## [1.13.12] - 2019-07-27
+
+- starting point: v1.13.11
+- ending point: v1.13.12
+- branch name: sec2019-07-27
+
+- steps:
+  - run `npm audit fix`
+  - install earlier version of ajv module as peer dependency via npm warning
