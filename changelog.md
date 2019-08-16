@@ -120,3 +120,17 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 - steps:
   - run `npm audit fix`
   - install earlier version of ajv module as peer dependency via npm warning
+
+## [1.13.13] - 2019-08-16
+
+### Meta
+
+- branch: gh-release
+- description: I want to make use of GitHub's "release" feature to include of build binary files for mac and windows concats apps. See https://help.github.com/en/articles/creating-releases
+
+### Updated
+
+
+### Added
+
+
