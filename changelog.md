@@ -130,7 +130,8 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 
 ### Updated
 
+- public/index.html: Remove favicon.ico import
 
-### Added
+### Deleted
 
-
+- public/favicon.ico
