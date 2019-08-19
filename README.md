@@ -6,6 +6,13 @@ Accepts .csv, .tsv, and extension-less files (_data.csv_, _data.tsv_, _data_) as
 
 ![demo](demo.gif)
 
+## Download
+
+v1.13.3
+
+- [macOS](https://github.com/brianzelip/concats/releases/download/v1.13.13/concats-1.13.13.dmg) (46.9 MB)
+- [Windows](https://github.com/brianzelip/concats/releases/download/v1.13.13/concats.Setup.1.13.13.exe) (34.8 MB)
+
 ## Made with
 
 - [electron](https://github.com/electron/electron)
