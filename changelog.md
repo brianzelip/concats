@@ -135,3 +135,12 @@ Design the app's user steps so that, instead of scrolling down the page as steps
 ### Deleted
 
 - public/favicon.ico
+
+## [1.13.14] - 2020-01-25
+
+- branch: vuln-patch
+- description: Run `npm audit fix` to fix vulnerabilities
+
+### Updated
+
+- package-lock.json
